@@ -1,11 +1,11 @@
-/* ProfilePage.css */
+
 .profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   padding: 20px;
-  background-color: var(--card-bg-color); /* Adjust based on your theme */
+  background-color: var(--card-bg-color); 
   border-radius: 10px;
   margin: 20px auto;
   max-width: 600px;

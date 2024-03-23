@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './HomePage.css';
+import Logout from '../../components/UserAuthentication/Logout';
 
 const HomePage = () => {
   return (
@@ -16,6 +17,7 @@ const HomePage = () => {
     <Link to="/login">
       <button>Login</button>
     </Link>
+   <Logout/>
       </div>
       
     </div>

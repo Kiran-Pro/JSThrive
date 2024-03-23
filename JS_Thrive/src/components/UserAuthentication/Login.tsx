@@ -1,28 +1,31 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase.config';
-import styles from './UserAuthentication.module.css';
 import { FirebaseError } from 'firebase/app';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import styles from './UserAuthentication.module.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); 
 
-  const handleLogin = async (event: { preventDefault: () => void; }) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError('');
     setLoading(true);
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert('User logged in successfully!');
+      // Redirect to profile page upon successful login
+      navigate('/profile'); // Adjust '/profile' as necessary to match your route
     } catch (error: unknown) {
       setError((error as FirebaseError).message);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
