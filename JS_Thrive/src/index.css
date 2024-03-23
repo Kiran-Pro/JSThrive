@@ -1,0 +1,81 @@
+:root {
+  --bg-color: #0D1117; 
+  --navbar-bg-color: #0D1117; 
+  --body-bg-color: #1a1a1a; 
+  --text-color: #FFFFFF; 
+  --card-bg-color: #161B22; 
+  --highlight-color: #1F6FEB; 
+  --border-color: #FF4500; 
+}
+body {
+  background-color: var(--body-bg-color); 
+  color: var(--text-color); 
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background-color: var(--card-bg-color);
+  padding: 20px;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px var(--shadow-color);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+.button {
+  background-color: var(--highlight-color);
+  color: #ffffff; 
+  border: none;
+  padding: 12px 24px; 
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3; 
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  background-color: #ffffff; 
+  color: var(--text-color);
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px; 
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: var(--highlight-color);
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-color);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; 
+}

@@ -1,0 +1,19 @@
+
+.home-page {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.home-page .card {
+  margin: 20px auto; 
+  max-width: 600px;
+}
+
+
+.lesson-page .card {
+  margin-bottom: 30px;
+}
+
+.lesson-page h2 {
+  color: var(--primary-color);
+}
