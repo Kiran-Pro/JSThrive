@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 import './HomePage.css';
-import Logout from '../../components/UserAuthentication/Logout';
+import Logout from '../UserAuthentication/Logout';
+import CodeEditor from '../../components/codeEditor/codeEditor';
+import { useState } from 'react';
 
 const HomePage = () => {
+  const [code, setCode] = useState<string>('function hello() {\n  console.log("Hello, world!");\n}');
+
+  const handleChange = (value: string) => {
+    setCode(value);
+  };
   return (
+    
     <div className="home-page container">
       <div className="card">
         <h1>Hola JSThrivers!</h1>
@@ -19,7 +27,10 @@ const HomePage = () => {
     </Link>
    <Logout/>
       </div>
-      
+      <div>
+      <h1>Code Editor Example</h1>
+      <CodeEditor defaultValue={code} onChange={handleChange} />
+    </div>
     </div>
   );
 };

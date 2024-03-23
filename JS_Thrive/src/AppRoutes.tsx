@@ -6,8 +6,8 @@ import Navbar from './components/Navbar/Navbar';
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const LessonPage = lazy(() => import('./pages/LessonPage/LessonPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage/ProfilePage'));
-const Register = lazy(() => import('./components/UserAuthentication/Register'));
-const Login = lazy(() => import('./components/UserAuthentication/Login'));
+const Register = lazy(() => import('./pages/UserAuthentication/Register'));
+const Login = lazy(() => import('./pages/UserAuthentication/Login'));
 const NotFoundPage = lazy(() => import('./pages/ErrorPage/NotFoundPage'));
 
 const AppRoutes = () => {
