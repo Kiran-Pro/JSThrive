@@ -10,10 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/codemirror": "^5.60.15",
-    "codemirror": "^6.0.1",
+    "ace-builds": "^1.32.8",
     "firebase": "^10.9.0",
     "react": "^18.2.0",
+    "react-ace": "^11.0.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3"
   },
