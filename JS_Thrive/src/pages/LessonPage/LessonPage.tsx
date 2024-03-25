@@ -13,7 +13,7 @@ const LessonPage = () => {
       <h1 className="lesson-title">Lesson: Introduction to JavaScript</h1>
       <p className="lesson-content">Lesson content goes here...</p>
       {!completed && (
-        <button className="complete-button" onClick={completeLesson}>
+        <button className="button" onClick={completeLesson}>
           Complete Lesson
         </button>
       )}

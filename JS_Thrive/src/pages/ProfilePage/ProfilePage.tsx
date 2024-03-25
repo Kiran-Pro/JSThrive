@@ -1,47 +1,53 @@
+import { User, getAuth, onAuthStateChanged } from 'firebase/auth'; // Import User type
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { Navigate } from 'react-router-dom';
 import './ProfilePage.css';
+import Logout from '../UserAuthentication/Logout';
+import Loader from '../../components/Loader/Loader';
 
 const ProfilePage = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const auth = getAuth();
-  const navigate = useNavigate();
-  const points = 100;
+  const [user, setUser] = useState<User | null>(null); // Define user state with User type or null
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
+    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (!currentUser) {
-        navigate('/login');
-      } else {
+      if (currentUser) {
         setUser(currentUser);
+      } else {
+        setUser(null);
       }
+      setLoading(false);
+    }, (error) => {
+      setError(error.message);
+      setLoading(false);
     });
 
     return () => unsubscribe();
-  }, [auth, navigate]);
+  }, []);
 
-  // Conditional rendering based on the user state
-  if (!user) {
-    // If user isn't set, show a message and login button
-    return (
-      <div className="login-redirect-container">
-        <p>Please Login to View the Profile</p>
-        <Link to="/login">
-          <button className="login-button">Login</button>
-        </Link>
-      </div>
-    );
+  if (loading) {
+    return <Loader/>;
   }
 
-  // Show profile content if user is set
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="profile-container">
-      <h1 className="profile-title">Your Profile</h1>
-      {/* Display user-specific information */}
-      <p className="user-name">{user.displayName || 'John Doe'}</p>
-      <p className="user-email">{user.email || 'john.doe@example.com'}</p>
-      <p className="profile-points">Points: {points}</p>
+      <u>
+      <h2 className="profile-title">Dashboard</h2>
+      </u>
+      <p className="user-name">Name: {user.displayName || 'Name not provided'}</p>
+      <p className="user-email">E-mail: {user.email || 'Email not provided'}</p>
+      <p className="profile-points">Points: 100</p>
+      <Logout/>
     </div>
   );
 };

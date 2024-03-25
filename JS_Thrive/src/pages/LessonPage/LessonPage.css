@@ -15,22 +15,6 @@
   margin-bottom: 20px;
 }
 
-.complete-button {
-  background-color: var(--highlight-color);
-  color: var(--bg-color);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.complete-button:hover {
-  background-color: var(--primary-color);
-  color: var(--text-color);
-}
-
 .congratulations-message {
   color: var(--highlight-color);
   font-size: 1.2rem;

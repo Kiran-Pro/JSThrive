@@ -14,7 +14,7 @@
   color: var(--highlight-color, #0056b3);
 }
 a{
-  color: #0056b3;
+  color: var(--highlight-color);
   text-decoration: none;
   font-weight: 500;
 }

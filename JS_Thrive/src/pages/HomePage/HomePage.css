@@ -1,53 +1,22 @@
-/* Enhancements to existing styles and new styles */
 
-.js-logo {
-  max-width: 150px; /* Adjust size as needed */
-  animation: spin 4s linear infinite; /* Logo spin animation */
+.home-page {
+  text-align: center;
+  padding: 50px 20px;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.card {
+  margin: 20px auto; 
+  max-width: 100%;
 }
 
-/* Styling for the course highlights */
-.course-highlights {
-  background-color: var(--card-bg-color);
-  color: var(--text-color);
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px 0;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+h1{
+  font-size: 4rem;
 }
 
-/* Styling for testimonials */
-.testimonials {
-  background: linear-gradient(145deg, #007BFF, #1F6FEB);
-  color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px 0;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+p{
+  font-size: 1.5rem;
 }
 
-/* Enhancements for a more attractive call to action (CTA) */
-.cta {
-  background-color: var(--highlight-color);
-  color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px 0;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .hero-section, .course-highlights, .testimonials, .cta {
-    padding: 15px;
-    text-align: center; /* Center content for smaller screens */
-  }
-  
-  .js-logo {
-    max-width: 100px; /* Smaller logo for mobile devices */
-  }
+h2{
+  font-size: 2rem;
 }
