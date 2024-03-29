@@ -18,6 +18,9 @@ const Lesson3 = lazy(() => import('./pages/LessonPage/Lessons/lesson3'));
 const Lesson4 = lazy(() => import('./pages/LessonPage/Lessons/lesson4'));
 const Lesson5 = lazy(() => import('./pages/LessonPage/Lessons/lesson5'));
 const Lesson6 = lazy(() => import('./pages/LessonPage/Lessons/lesson6'));
+const Lesson7 = lazy(() => import('./pages/LessonPage/Lessons/lesson7'));
+const Lesson8 = lazy(() => import('./pages/LessonPage/Lessons/lesson8'));
+const Lesson9 = lazy(() => import('./pages/LessonPage/Lessons/lesson9'));
 
 const AppRoutes = () => {
   return (
@@ -35,6 +38,9 @@ const AppRoutes = () => {
           <Route path="/lesson4" element={<Lesson4/>} />
           <Route path="/lesson5" element={<Lesson5/>} />
           <Route path="/lesson6" element={<Lesson6/>} />
+          <Route path="/lesson7" element={<Lesson7/>} />
+          <Route path="/lesson8" element={<Lesson8/>} />
+          <Route path="/lesson9" element={<Lesson9/>} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
