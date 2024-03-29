@@ -3,7 +3,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7'; 
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
-import { useTheme } from '../../Provider/ThemeContext';
+import { useTheme } from '../../Context/ThemeContext';
 
 const Navbar = () => {
   const { lightMode, toggleTheme } = useTheme();

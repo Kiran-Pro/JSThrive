@@ -1,0 +1,50 @@
+.lesson-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px;
+}
+
+.lesson-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.lesson-content {
+  margin-bottom: 20px;
+}
+
+.lesson-section {
+  margin-bottom: 30px;
+}
+
+.lesson-section h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.lesson-section p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.lesson-congratulations {
+  background-color: var(--highlight-color);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.lesson-congratulations h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.lesson-congratulations p {
+  font-size: 16px;
+  line-height: 1.5;
+}

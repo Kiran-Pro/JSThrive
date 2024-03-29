@@ -1,25 +1,21 @@
-import { useState } from 'react';
-import './LessonPage.css'; 
+// LessonPage.tsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './LessonPage.css';
 
-const LessonPage = () => {
-  const [completed, setCompleted] = useState(false);
+interface LessonPageProps {
+  title: string;
+  linkTo: string;
+}
 
-  const completeLesson = () => {
-    setCompleted(true);
-  };
-
+const LessonPage: React.FC<LessonPageProps> = ({ title, linkTo }) => {
   return (
     <div className="lesson-container">
-      <h1 className="lesson-title">Lesson: Introduction to JavaScript</h1>
-      <p className="lesson-content">Lesson content goes here...</p>
-      {!completed && (
-        <button className="button" onClick={completeLesson}>
-          Complete Lesson
-        </button>
-      )}
-      {completed && (
-        <p className="congratulations-message">Congratulations! You've completed this lesson.</p>
-      )}
+      
+      <h3 className="lesson-title">{title}</h3>
+      <Link to={linkTo} className="button">
+        Start Lesson
+      </Link>
     </div>
   );
 };
