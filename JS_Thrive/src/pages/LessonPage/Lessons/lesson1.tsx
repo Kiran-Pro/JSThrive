@@ -1,5 +1,5 @@
 import HtmlEditor from '../../../components/codeEditor/HtmlEditor';
-import './Lessons.css'
+import './Lessons.css';
 
 const defaultHtmlCode = `<!DOCTYPE html>
     <html lang="en">
@@ -15,7 +15,9 @@ const defaultHtmlCode = `<!DOCTYPE html>
     </body>
     </html>`;
 
-function Lesson1() {
+    
+    function Lesson1() {
+    
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 1: Introduction to Web Development and Setup</h2>
@@ -39,6 +41,7 @@ function Lesson1() {
         <h4>Congratulations!</h4>
         <p>You've just taken your first steps into the world of web development by setting up your workspace and creating the foundation for our quiz app. In the next lesson, we'll start adding more elements to our quiz app and make it interactive using JavaScript.</p>
       </div>
+      
     </div>
   );
 }
