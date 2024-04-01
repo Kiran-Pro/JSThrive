@@ -1,17 +1,18 @@
-import { User, getAuth, onAuthStateChanged } from 'firebase/auth'; // Import User type
-import { useEffect, useState } from 'react';
+import './ProfilePage.css'
+import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import './ProfilePage.css';
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { app } from '../../firebase.config';
 import Logout from '../UserAuthentication/Logout';
 import Loader from '../../components/Loader/Loader';
 
-const ProfilePage = () => {
-  const [user, setUser] = useState<User | null>(null); // Define user state with User type or null
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+const ProfilePage: React.FC = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    const auth = getAuth();
+    const auth = getAuth(app); 
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
@@ -28,7 +29,7 @@ const ProfilePage = () => {
   }, []);
 
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (!user) {
@@ -36,18 +37,21 @@ const ProfilePage = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="error-container">
+        <h2>Error</h2>
+        <p>{error}</p>
+      </div>
+    );
   }
 
   return (
     <div className="profile-container">
-      <u>
       <h2 className="profile-title">Dashboard</h2>
-      </u>
       <p className="user-name">Name: {user.displayName || 'Name not provided'}</p>
       <p className="user-email">E-mail: {user.email || 'Email not provided'}</p>
       <p className="profile-points">Points: 100</p>
-      <Logout/>
+      <Logout />
     </div>
   );
 };

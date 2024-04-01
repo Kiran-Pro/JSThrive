@@ -1,7 +1,6 @@
 // HomePage.js
 import { Link } from 'react-router-dom';
 import './HomePage.css';
-import Logout from '../UserAuthentication/Logout';
 
 const HomePage = () => {
   return (
@@ -14,7 +13,7 @@ const HomePage = () => {
         <Link to='/lesson'>
           <button className='button'>Get Started</button>
         </Link>
-        <Logout/>
+        
        
       </div>
     </div>

@@ -70,3 +70,7 @@ a{
   color: #ff0000;
   margin-top: 10px;
 }
+
+.hover_text:hover{
+  text-decoration: underline;
+}

@@ -1,5 +1,5 @@
 import HtmlEditor from '../../../components/codeEditor/HtmlEditor';
-import './Lessons.css';
+import './Lessons.css'
 
 const defaultHtmlCode = `<!DOCTYPE html>
     <html lang="en">
