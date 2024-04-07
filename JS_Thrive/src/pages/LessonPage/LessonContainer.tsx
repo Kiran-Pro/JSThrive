@@ -46,9 +46,9 @@ const LessonContainer: React.FC = () => {
   }
 
   return (
-    <div className="lesson-container">
+    
       <LessonContentPage />
-    </div>
+   
   );
 };
 

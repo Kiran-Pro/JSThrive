@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom'; 
 import { auth } from '../../firebase.config';
-import { FirebaseError } from 'firebase/app';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { IconButton, Button } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import styles from './UserAuthentication.module.css';
 
 const Login = () => {
@@ -10,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate(); 
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -19,10 +21,9 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // Redirect to profile page upon successful login
-      navigate('/profile'); // Adjust '/profile' as necessary to match your route
+      navigate('/profile'); 
     } catch (error: unknown) {
-      setError((error as FirebaseError).message);
+      setError((error as Error).message); // Use Error type
     } finally {
       setLoading(false);
     }
@@ -40,20 +41,38 @@ const Login = () => {
           required
           className={styles.inputField}
           disabled={loading}
+          style={{
+            borderColor: error && '#ff0000' 
+          }}
         />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-          className={styles.inputField}
-          disabled={loading}
-        />
-        <button type="submit" className={styles.button} disabled={loading}>
+
+        <div className={styles.passwordContainer}>
+          <input
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            className={styles.inputField}
+            disabled={loading}
+            style={{
+              borderColor: error && '#ff0000' 
+            }}
+            
+          />
+          <IconButton
+            onClick={() => setShowPassword(!showPassword)}
+            className={styles.Eyeicon}
+          >
+            {showPassword ? <VisibilityOff /> : <Visibility />}
+          </IconButton>
+        </div>
+
+        <a href="/forgetPass" className={styles.link}>Forgot Password?</a>
+        <Button type="submit" className={styles.button} disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
-        </button>
-        <p>Don't you have an account ? <a className='hover_text' href="/register">Register</a> here </p>
+        </Button>
+        <p>Don't have an account? <a href="/register" className={styles.hover_text}>Register</a> here </p>
       </form>
       {error && <p className={styles.errorMessage}>{error}</p>}
     </div>

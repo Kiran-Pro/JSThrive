@@ -9,6 +9,7 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage/ProfilePage'));
 const Register = lazy(() => import('./pages/UserAuthentication/Register'));
 const Login = lazy(() => import('./pages/UserAuthentication/Login'));
+const ForgetPassword = lazy(() => import('./pages/UserAuthentication/ForgetPassword'));
 const NotFoundPage = lazy(() => import('./pages/ErrorPage/NotFoundPage'));
 const LessonContainer = lazy(() => import('./pages/LessonPage/LessonContainer'));
 
@@ -44,6 +45,7 @@ const AppRoutes = () => {
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/forgetPass" element={<ForgetPassword/>} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Suspense>

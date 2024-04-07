@@ -1,17 +1,33 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7'; 
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import BoltIcon from '@mui/icons-material/Bolt';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import { useTheme } from '../../Context/ThemeContext';
+import { useState } from 'react';
+
 
 const Navbar = () => {
   const { lightMode, toggleTheme } = useTheme();
+  const [isHovered, setIsHovered] = useState(false);
+
 
   return (
     <nav className={`navbar ${lightMode ? 'light-theme' : ''}`}>
       <div className="navbar-brand">
-        <NavLink to="/" className="home-link">J<span>&#x26A1;</span>Thrive</NavLink>
+        <NavLink to="/" className="home-link">
+          J
+          <BoltIcon
+            className={`thunder ${isHovered ? 'animated' : ''}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            sx={{
+              fontSize: 23, verticalAlign: 'middle'
+            }}
+          />
+          Thrive
+        </NavLink>
       </div>
       <div>
         <NavLink to="/" className={({ isActive }) => "nav-link" + (isActive ? " nav-link-active" : "")} end>Home</NavLink>
@@ -20,7 +36,7 @@ const Navbar = () => {
           <AccountCircleIcon sx={{ fontSize: 33, verticalAlign: 'middle',pr:2.23}} />
         </NavLink>
         <span className="theme-icon" onClick={toggleTheme}>
-          {lightMode ? <Brightness4Icon sx={{ fontSize: 33, verticalAlign: 'middle' }} /> : <Brightness7Icon sx={{ fontSize: 33, verticalAlign: 'middle' }} />}
+          {lightMode ? <DarkModeIcon sx={{ fontSize: 33, verticalAlign: 'middle' }} /> : <LightModeIcon sx={{ fontSize: 33, verticalAlign: 'middle' }} />}
         </span>
       </div>
     </nav>

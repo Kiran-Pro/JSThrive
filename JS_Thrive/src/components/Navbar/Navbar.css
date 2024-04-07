@@ -19,7 +19,8 @@
 .navbar-brand {
   font-weight: bolder;
   font-size: 1.5rem;
-  transition: transform 0.5s ease-out, opacity 0.5s ease; 
+  transition: transform 0.5s ease, color 0.5s ease;
+  transform: translateZ(0); 
 }
 .theme-icon:hover {
   cursor: pointer;
@@ -68,4 +69,14 @@
 
 .nav-link-active {
   color: var(--highlight-color);
+}
+
+.thunder:hover {
+  transition: transform 0.5s ease, color 0.5s ease;
+  transform: translateZ(0); 
+}
+
+.thunder.animated:hover {
+  transform: scale(1.5) translateZ(0);
+  color: #ffc107;
 }

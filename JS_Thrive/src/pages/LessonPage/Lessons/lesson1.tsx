@@ -15,19 +15,18 @@ const defaultHtmlCode = `<!DOCTYPE html>
     </body>
     </html>`;
 
-    
     function Lesson1() {
     
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 1: Introduction to Web Development and Setup</h2>
       <div className="lesson-content">
-        <section className="lesson-section">
+      <section id="discovering-web-dev" className="lesson-section">
           <h3>Discovering Web Development:</h3>
           <p>Let's start by understanding what web development is all about. Think of the web as a vast network of interconnected pages, each designed to deliver information, services, or entertainment to users like you. Now, web development is the process of creating these web pages and making them work seamlessly on the internet.</p>
           <p>Activity: Take a moment to think about some of your favorite websites or web applications. What do you like about them? How do they make your browsing experience better?</p>
         </section>
-        <section className="lesson-section">
+        <section id="setting-up-workspace" className="lesson-section">
           <h3>Setting up Your Workspace:</h3>
           <p>Activity: Let's set up your workspace together! First, download a code editor like Visual Studio Code or Atom. These tools will help you write and organize your code effectively. Once you've installed a code editor, create a new folder on your computer. This folder will hold all the files for our quiz app. Inside this folder, create a new file called index.html. This file will be the starting point of our quiz app, where we'll write the HTML code.</p>
           <p>Explanation: HTML (HyperText Markup Language) is the language used to create the structure of web pages. Think of it as the skeleton that gives a webpage its basic structure.</p>

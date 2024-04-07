@@ -20,3 +20,13 @@ p{
 h2{
   font-size: 2rem;
 }
+
+.thunder {
+  transition: transform 0.5s ease, color 0.5s ease;
+  transform: translateZ(0); 
+}
+
+.thunder.animated {
+  transform: scale(1.5) translateZ(0);
+  color: #ffc107; /* Gold color */
+}

@@ -8,6 +8,15 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+.link:hover{
+  text-decoration: underline;
+}
+.link{
+  position: relative;
+  left: 135px;
+  bottom: 10px;
+  font-size: 15px;
+}
 
 .title {
   margin-bottom: 20px;
@@ -38,6 +47,16 @@ a{
 .logout-banner svg {
   font-size: 24px; /* Adjust icon size */
 }
+.Eyeicon{
+  color: var(--highlight-color);
+  background: none;
+  border: none;
+  position: absolute;
+  right: 0; /* Adjust as needed */
+  top:50%;
+  transform: translateY(-65%); /* Adjust for vertical centering */
+  cursor: pointer;
+}
 
 
 .inputField {
@@ -48,7 +67,14 @@ a{
   border-radius: 4px;
   box-sizing: border-box;
   color: black;
+  flex: 1;
 
+}
+
+.passwordContainer{
+  position: relative; /* Ensure relative positioning */
+  display: flex;
+  align-items: center;
 }
 
 .button {
