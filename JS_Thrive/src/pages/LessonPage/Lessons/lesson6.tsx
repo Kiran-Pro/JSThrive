@@ -1,3 +1,5 @@
+import { useState } from "react";
+import LessonNavigator from "../../../components/LessonNavigator";
 import JsEditor from "../../../components/codeEditor/JsEditor";
 import "./Lessons.css";
 
@@ -32,7 +34,17 @@ restartButton.addEventListener('click', () => {
 });
 `;
 
-function lesson6() {
+function Lesson6() {
+  const [currentLesson, setCurrentLesson] = useState(6);
+  const totalLessons = 9; // Total number of lessons
+
+  const handleNextLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson + 1);
+  };
+
+  const handlePreviousLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson - 1);
+  };
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 6: Implementing Quiz Restart and High Score Tracking</h2>
@@ -67,8 +79,14 @@ function lesson6() {
         <h4>Congratulations!</h4>
         <p>You've successfully completed Lesson 6 and learned how to enhance the quiz app by implementing quiz restart functionality and high score tracking. These features make the quiz more engaging and competitive, encouraging users to challenge themselves and improve their performance. In the next lesson, we'll explore further enhancements to make our quiz even more interactive and enjoyable.</p>
       </div>
+      <LessonNavigator
+        currentLesson={currentLesson}
+        totalLessons={totalLessons}
+        onNextLesson={handleNextLesson}
+        onPreviousLesson={handlePreviousLesson}
+      />
     </div>
   );
 }
 
-export default lesson6;
+export default Lesson6;

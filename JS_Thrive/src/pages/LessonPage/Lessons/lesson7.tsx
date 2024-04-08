@@ -1,3 +1,5 @@
+import { useState } from "react";
+import LessonNavigator from "../../../components/LessonNavigator";
 import JsEditor from "../../../components/codeEditor/JsEditor";
 import "./Lessons.css";
 
@@ -32,7 +34,17 @@ function endQuiz() {
 }
 `;
 
-function lesson7() {
+function Lesson7() {
+  const [currentLesson, setCurrentLesson] = useState(7);
+  const totalLessons = 9; // Total number of lessons
+
+  const handleNextLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson + 1);
+  };
+
+  const handlePreviousLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson - 1);
+  };
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 7: Enhancing the Quiz with Local Storage for Persistent Data</h2>
@@ -65,8 +77,14 @@ function lesson7() {
         <h4>Congratulations!</h4>
         <p>You've successfully completed Lesson 7 and learned how to enhance the quiz app with local storage for persistent data. By storing the user's high score locally, you've added a personalized touch to the quiz experience, allowing users to track their progress over multiple sessions. In the next lesson, we'll explore additional features to further improve our quiz app.</p>
       </div>
+      <LessonNavigator
+        currentLesson={currentLesson}
+        totalLessons={totalLessons}
+        onNextLesson={handleNextLesson}
+        onPreviousLesson={handlePreviousLesson}
+      />
     </div>
   );
 }
 
-export default lesson7;
+export default Lesson7;

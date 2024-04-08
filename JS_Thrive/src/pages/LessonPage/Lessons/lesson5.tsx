@@ -1,3 +1,5 @@
+import { useState } from "react";
+import LessonNavigator from "../../../components/LessonNavigator";
 import HtmlEditor from "../../../components/codeEditor/HtmlEditor";
 import JsEditor from "../../../components/codeEditor/JsEditor";
 import "./Lessons.css";
@@ -27,7 +29,17 @@ const defaultCodeJs = `function selectAnswer(selectedIndex, correctIndex) {
   }
 }`;
 
-function lesson5() {
+function Lesson5() {
+  const [currentLesson, setCurrentLesson] = useState(5);
+  const totalLessons = 9; // Total number of lessons
+
+  const handleNextLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson + 1);
+  };
+
+  const handlePreviousLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson - 1);
+  };
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 5: Adding Feedback and Score Tracking</h2>
@@ -78,8 +90,14 @@ function lesson5() {
         <h4>Congratulations!</h4>
         <p>You've successfully completed Lesson 5 and learned how to enhance the user experience of our quiz app by adding feedback mechanisms and score tracking. By providing immediate feedback and keeping track of the user's score, we've made the quiz more engaging and rewarding for users. In the next lesson, we'll explore more advanced features to further improve our quiz app's functionality.</p>
       </div>
+      <LessonNavigator
+        currentLesson={currentLesson}
+        totalLessons={totalLessons}
+        onNextLesson={handleNextLesson}
+        onPreviousLesson={handlePreviousLesson}
+      />
     </div>
   );
 }
 
-export default lesson5;
+export default Lesson5;

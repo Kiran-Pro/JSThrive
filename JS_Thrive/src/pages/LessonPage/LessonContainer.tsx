@@ -46,9 +46,7 @@ const LessonContainer: React.FC = () => {
   }
 
   return (
-    
       <LessonContentPage />
-   
   );
 };
 

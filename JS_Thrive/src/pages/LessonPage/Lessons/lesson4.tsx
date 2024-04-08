@@ -1,3 +1,5 @@
+import { useState } from "react";
+import LessonNavigator from "../../../components/LessonNavigator";
 import HtmlEditor from "../../../components/codeEditor/HtmlEditor";
 import "./Lessons.css";
 
@@ -59,7 +61,17 @@ body {
 }
 `;
 
-function lesson4() {
+function Lesson4() {
+  const [currentLesson, setCurrentLesson] = useState(4);
+  const totalLessons = 9; // Total number of lessons
+
+  const handleNextLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson + 1);
+  };
+
+  const handlePreviousLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson - 1);
+  };
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 4: Enhancing the Quiz with Styling</h2>
@@ -82,8 +94,16 @@ function lesson4() {
         <h4>Congratulations!</h4>
         <p>You've successfully completed Lesson 4 and learned how to enhance the visual appearance of our quiz app using CSS styling. In the next lesson, we'll explore more advanced concepts to further improve our quiz app's user experience.</p>
       </div>
-    </div>
+      <LessonNavigator
+        currentLesson={currentLesson}
+        totalLessons={totalLessons}
+        onNextLesson={handleNextLesson}
+        onPreviousLesson={handlePreviousLesson}
+      />
+      </div>
+      
+   
   );
 }
 
-export default lesson4;
+export default Lesson4;

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import LessonNavigator from "../../../components/LessonNavigator";
 import JsEditor from "../../../components/codeEditor/JsEditor";
 import "./Lessons.css";
 
@@ -32,7 +34,17 @@ function selectAnswer(selectedIndex, correctIndex) {
 }
 `;
 
-function lesson8() {
+function Lesson8() {
+  const [currentLesson, setCurrentLesson] = useState(8);
+  const totalLessons = 9; // Total number of lessons
+
+  const handleNextLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson + 1);
+  };
+
+  const handlePreviousLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson - 1);
+  };
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 8: Implementing Answer Validation and Feedback</h2>
@@ -65,8 +77,14 @@ function lesson8() {
         <h4>Congratulations!</h4>
         <p>You've successfully completed Lesson 8 and learned how to implement answer validation and feedback in our quiz app. By providing immediate feedback on user selections and updating the score accordingly, you've enhanced the interactivity and educational value of the quiz. In the next lesson, we'll explore additional features to further improve the user experience.</p>
       </div>
+      <LessonNavigator
+        currentLesson={currentLesson}
+        totalLessons={totalLessons}
+        onNextLesson={handleNextLesson}
+        onPreviousLesson={handlePreviousLesson}
+      />
     </div>
   );
 }
 
-export default lesson8;
+export default Lesson8;

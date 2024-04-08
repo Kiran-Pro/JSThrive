@@ -1,3 +1,5 @@
+import { useState } from "react";
+import LessonNavigator from "../../../components/LessonNavigator";
 import JsEditor from "../../../components/codeEditor/JsEditor";
 import "./Lessons.css";
 
@@ -67,6 +69,16 @@ const defaultJsCode = `
 `;
 
 function Lesson3() {
+  const [currentLesson, setCurrentLesson] = useState(3);
+  const totalLessons = 9; // Total number of lessons
+
+  const handleNextLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson + 1);
+  };
+
+  const handlePreviousLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson - 1);
+  };
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 3: Making the Quiz Interactive with JavaScript</h2>
@@ -90,6 +102,12 @@ function Lesson3() {
         <h4>Congratulations!</h4>
         <p>You've successfully completed Lesson 3 and learned how to make the quiz interactive with JavaScript. In the next lesson, we'll explore more advanced concepts to further enhance our quiz app.</p>
       </div>
+      <LessonNavigator
+        currentLesson={currentLesson}
+        totalLessons={totalLessons}
+        onNextLesson={handleNextLesson}
+        onPreviousLesson={handlePreviousLesson}
+      />
       </div>
     </div>
   );

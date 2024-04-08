@@ -6,16 +6,6 @@
   padding: 50px;
 }
 
-/* .lesson-container {
-  color: var(--text-color);
-  max-width: calc(45% - 20px);
-  padding: 20px;
-  border: 2px solid var(--primary-color);
-  border-radius: 8px;
-  background-color: var(--secondary-color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-} */
 
 .lesson-container:hover {
   transform: translateY(-5px);

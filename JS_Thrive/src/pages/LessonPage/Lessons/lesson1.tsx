@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import LessonNavigator from '../../../components/LessonNavigator';
 import HtmlEditor from '../../../components/codeEditor/HtmlEditor';
 import './Lessons.css';
 
@@ -15,13 +17,23 @@ const defaultHtmlCode = `<!DOCTYPE html>
     </body>
     </html>`;
 
-    function Lesson1() {
-    
+function Lesson1() {
+  const [currentLesson, setCurrentLesson] = useState(1);
+  const totalLessons = 9; // Total number of lessons
+
+  const handleNextLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson + 1);
+  };
+
+  const handlePreviousLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson - 1);
+  };
+
   return (
     <div className="lesson-container">
-      <h2 className="lesson-title">Lesson 1: Introduction to Web Development and Setup</h2>
+      <h2 className="lesson-title">Lesson {currentLesson}: Introduction to Web Development and Setup</h2>
       <div className="lesson-content">
-      <section id="discovering-web-dev" className="lesson-section">
+        <section id="discovering-web-dev" className="lesson-section">
           <h3>Discovering Web Development:</h3>
           <p>Let's start by understanding what web development is all about. Think of the web as a vast network of interconnected pages, each designed to deliver information, services, or entertainment to users like you. Now, web development is the process of creating these web pages and making them work seamlessly on the internet.</p>
           <p>Activity: Take a moment to think about some of your favorite websites or web applications. What do you like about them? How do they make your browsing experience better?</p>
@@ -40,7 +52,12 @@ const defaultHtmlCode = `<!DOCTYPE html>
         <h4>Congratulations!</h4>
         <p>You've just taken your first steps into the world of web development by setting up your workspace and creating the foundation for our quiz app. In the next lesson, we'll start adding more elements to our quiz app and make it interactive using JavaScript.</p>
       </div>
-      
+      <LessonNavigator
+        currentLesson={currentLesson}
+        totalLessons={totalLessons}
+        onNextLesson={handleNextLesson}
+        onPreviousLesson={handlePreviousLesson}
+      />
     </div>
   );
 }

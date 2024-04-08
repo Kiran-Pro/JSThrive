@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import HtmlEditor from '../../../components/codeEditor/HtmlEditor';
+import LessonNavigator from '../../../components/LessonNavigator';
 import './Lessons.css';
 
 const defaultCode = `<!DOCTYPE html>
@@ -46,6 +48,16 @@ const defaultCode = `<!DOCTYPE html>
 `;
 
 function Lesson2() {
+  const [currentLesson, setCurrentLesson] = useState(2);
+  const totalLessons = 9; // Total number of lessons
+
+  const handleNextLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson + 1);
+  };
+
+  const handlePreviousLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson - 1);
+  };
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 2: Adding Structure to the Quiz App</h2>
@@ -67,6 +79,12 @@ function Lesson2() {
         <h4>Congratulations!</h4>
         <p>You've successfully structured the HTML for our quiz app. In the next lesson, we'll make this quiz interactive by adding JavaScript functionality. Great job! Let me know if you have any questions or if you're ready to move on.</p>
       </div>
+      <LessonNavigator
+        currentLesson={currentLesson}
+        totalLessons={totalLessons}
+        onNextLesson={handleNextLesson}
+        onPreviousLesson={handlePreviousLesson}
+      />
     </div>
   );
 }

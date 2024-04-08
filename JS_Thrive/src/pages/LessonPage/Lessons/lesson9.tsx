@@ -1,5 +1,7 @@
+import { useState } from "react";
 import JsEditor from "../../../components/codeEditor/JsEditor";
 import "./Lessons.css";
+import LessonNavigator from "../../../components/LessonNavigator";
 
 const defaultJsCode = `// Example code for visual enhancements and user feedback
 // You can modify and add to this code to customize your quiz app's appearance and feedback mechanisms.
@@ -31,7 +33,17 @@ function resetUI() {
 document.addEventListener('DOMContentLoaded', resetUI);
 `;
 
-function lesson9() {
+function Lesson9() {
+  const [currentLesson, setCurrentLesson] = useState(9);
+  const totalLessons = 9; // Total number of lessons
+
+  const handleNextLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson + 1);
+  };
+
+  const handlePreviousLesson = () => {
+    setCurrentLesson(prevLesson => prevLesson - 1);
+  };
   return (
     <div className="lesson-container">
       <h2 className="lesson-title">Lesson 9: Enhancing User Experience and Finalizing the Quiz App</h2>
@@ -67,8 +79,14 @@ function lesson9() {
         <h4>Congratulations!</h4>
         <p>You've completed Lesson 9 and finalized your quiz app with enhanced user experience and polished design. By focusing on visual enhancements, user feedback, and final touches, you've created a compelling and engaging learning tool. Keep iterating and refining your projects to deliver the best possible experience for your users.</p>
       </div>
+      <LessonNavigator
+        currentLesson={currentLesson}
+        totalLessons={totalLessons}
+        onNextLesson={handleNextLesson}
+        onPreviousLesson={handlePreviousLesson}
+      />
     </div>
   );
 }
 
-export default lesson9;
+export default Lesson9;
