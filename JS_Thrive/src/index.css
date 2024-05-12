@@ -5,15 +5,17 @@
   --text-color: #ffffff; 
   --card-bg-color: #1c1c1c; /* Card background color */
   --highlight-color: #8a35e5; /* Highlight color */
+  --highlight-color2: #006DAA;
   --border-color: #333333; /* Border color */
 }
 .light-theme{
   --bg-color: #FAFAFA; /* Soft white background for a cleaner look */
-  --navbar-bg-color: #FFFFFF; /* Pure white for navbar to stand out */
+  --navbar-bg-color: #F0F0F0; /* Pure white for navbar to stand out */
   --body-bg-color: #FAFAFA; /* Matching body background for cohesion */
   --text-color: #323232; /* Dark grey for text, providing contrast without harshness */
   --card-bg-color: #FFFFFF; /* Cards stand out with a pure white against the softer body background */
   --highlight-color: #8a35e5; /* A calm, elegant blue for highlights and links */
+  --highlight-color2: #006DAA;
   --border-color: #E0E0E0; /* Light grey borders for subtle separation */
 }
 
@@ -81,6 +83,20 @@ body {
   font-weight: 500;
   margin: 10px;
 }
+
+.button:disabled{
+  background-color: gray; /* Highlight color for buttons */
+  color: black;
+  border: 2px solid gray; /* Add border */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 10px;
+}
+.button:disabled:hover{
+transform: none;
+}
 .light-theme .button{
   color: whitesmoke;
 }
@@ -120,7 +136,7 @@ textarea:focus {
 }
 
 /* Typography enhancements */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, ul {
   color: var(--text-color);
   font-family: 'Poppins', Arial, sans-serif; /* New font choice */
   margin: 10px 0;

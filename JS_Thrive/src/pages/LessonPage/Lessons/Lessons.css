@@ -8,6 +8,7 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  color: var(--highlight-color);
 }
 
 .lesson-content {
@@ -30,24 +31,64 @@
   margin-bottom: 10px;
 }
 
-.lesson-congratulations {
-  margin-top: 2rem;
-  background-color: var(--highlight-color);
-  color: white;
-  padding: 20px;
-  border-radius: 8px;
+
+
+.figure{
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 30px;
 }
 
-.lesson-congratulations h4 {
-  font-size: 18px;
-  font-weight: bold;
+.lesson-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lesson-nav {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 260px;
+  overflow-y: auto;
+  padding: 30px;
+  background-color: var(--navbar-bg-color);
+}
+
+.lesson-nav ul {
+  list-style-type:circle;
+  padding: 0;
+}
+
+.lesson-nav li {
   margin-bottom: 10px;
-  color: black;
 }
 
-.lesson-congratulations p {
-  font-size: 16px;
-  line-height: 1.5;
+.lesson-nav a {
+  text-decoration: none;
+  color: #32908F;
+  font-weight: bold;
+}
+
+.lesson-nav a:hover {
+  color:var(--highlight-color);
+} 
+
+
+.main-con{
+  display: flex;
+  justify-content: space-between;
+}
+.inner-con{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+b{
+  color: #32908F;
 }
 
 

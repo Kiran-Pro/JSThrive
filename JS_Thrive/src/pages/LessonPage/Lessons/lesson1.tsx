@@ -1,26 +1,21 @@
 import { useState } from 'react';
 import LessonNavigator from '../../../components/LessonNavigator';
-import HtmlEditor from '../../../components/codeEditor/HtmlEditor';
+import Icon from '../../../resources/htmlUnderstanding.jpeg'
 import './Lessons.css';
+import ExploreIcon from '@mui/icons-material/Explore';
+import JsEditor3 from '../../../components/codeEditor/JsEditor2';
 
-const defaultHtmlCode = `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quiz Game</title>
-    </head>
-    <body>
-        <h1>Welcome to the Quiz Game!</h1>
-        <!-- Your quiz app content will go here -->
-        <script src="script.js"></script>
-    </body>
-    </html>`;
+const defaultCode = `alert("JS IS AWESOME")`;
+
+// const verifyCode = (code: string) => {
+//   return code === 'alert("JS IS AWESOME")';
+// };
 
 function Lesson1() {
-  const [currentLesson, setCurrentLesson] = useState(1);
-  const totalLessons = 9; // Total number of lessons
 
+  
+  const [currentLesson, setCurrentLesson] = useState(1);
+  const totalLessons = 9; 
   const handleNextLesson = () => {
     setCurrentLesson(prevLesson => prevLesson + 1);
   };
@@ -30,34 +25,88 @@ function Lesson1() {
   };
 
   return (
+    <div className='main-con'>
+
+        <div className='lesson-nav'>
+        <ul>
+        <h2 style={{ display: 'flex', alignItems: 'center',gap:'10px' }}>Lesson Navigator {" "}<ExploreIcon sx={{color:'#32908F',fontSize:'28px'}}/></h2>
+          <br />
+          <li>  <a href="#JavaScript?">JavaScript?</a> </li>
+          <li>  <a href="#Figure">Visual Understanding - JS</a> </li>
+          <li>  <a href="#Coding Station - Alert">Runnn</a> </li>
+        </ul>
+      </div>
     <div className="lesson-container">
-      <h2 className="lesson-title">Lesson {currentLesson}: Introduction to Web Development and Setup</h2>
+     
+      <div className='inner-con'>
+      <h1 className="lesson-title">Chronicles of JavaScript</h1>
       <div className="lesson-content">
-        <section id="discovering-web-dev" className="lesson-section">
-          <h3>Discovering Web Development:</h3>
-          <p>Let's start by understanding what web development is all about. Think of the web as a vast network of interconnected pages, each designed to deliver information, services, or entertainment to users like you. Now, web development is the process of creating these web pages and making them work seamlessly on the internet.</p>
-          <p>Activity: Take a moment to think about some of your favorite websites or web applications. What do you like about them? How do they make your browsing experience better?</p>
+        <section id="JavaScript?" className="lesson-section">
+        Once upon a time, there was a magical land called the Internet. 
+        In this land, there lived a friendly wizard named JavaScript. 
+        Now, JavaScript was not your ordinary wizard - instead of casting spells with wands, 
+        it used special words and commands to make things happen on web pages.
+<br />
+<br />
+        Now, let's imagine JavaScript as a friendly helper who understands different types of things. 
+        For example, it knows about numbers, like how many candies you have, or strings, 
+        which are like words or sentences you can write. It even knows about true or false statements, 
+        just like answering "yes" or "no" to questions.
+<br />
+<br />
+        But wait, there's more! JavaScript can also gather lots of things together,
+        just like collecting toys in a box. These collections are called arrays. 
+        And if you want to describe something in more detail, JavaScript can create objects, 
+        which are like little treasure chests holding lots of information.
+<br />        
+<br />        
+        Now, imagine you have a special notebook where you can write down things you want to remember. 
+        This notebook is like a variable in JavaScript. You can write down the number of candies you have, 
+        the words to a song, or even if it's sunny outside.
+        <br />
+        <br />
+        So, JavaScript is like a friendly wizard that helps you create amazing things on the Internet 
+        by understanding different types of things, collecting them together, 
+        and remembering them in special notebooks. With JavaScript by your side, you can bring 
+        your ideas to life and make the Internet a more magical place!
+<br />
         </section>
-        <section id="setting-up-workspace" className="lesson-section">
-          <h3>Setting up Your Workspace:</h3>
-          <p>Activity: Let's set up your workspace together! First, download a code editor like Visual Studio Code or Atom. These tools will help you write and organize your code effectively. Once you've installed a code editor, create a new folder on your computer. This folder will hold all the files for our quiz app. Inside this folder, create a new file called index.html. This file will be the starting point of our quiz app, where we'll write the HTML code.</p>
-          <p>Explanation: HTML (HyperText Markup Language) is the language used to create the structure of web pages. Think of it as the skeleton that gives a webpage its basic structure.</p>
-          <p>Activity: Open the index.html file you just created with your code editor. Inside, let's add some basic HTML code to get started:</p>
-          <HtmlEditor defaultCode={defaultHtmlCode} />
-          <p>Explanation: This HTML code sets up the basic structure of our webpage. We have a title that appears in the browser tab, and a heading 'h1' that welcomes users to our quiz app. The script tag at the bottom links to a JavaScript file (script.js), which we'll use later to add interactivity to our quiz app.</p>
-          <p>Activity: Save the index.html file and open it in your web browser. You should see the welcome message displayed in the browser window.</p>
+        <div id="Figure" className='figure'>
+        <img  src={Icon} width='450px' alt="Icon" />
+        <h2  className='lesson-title'>Basically, JS is like Human Brain that Controls the Whole Body (HTML) </h2>
+        </div>
+        <br />
+        <br />
+        <section id='Coding Station - Alert'>
+        Now, Imagine yourself at your coding station, 
+        ready to bring your ideas to life. There's a special button called "Run it" waiting for your touch. 
+        Clicking it unleashes the magic of your code, making it come alive on your screen. 
+        And guess what? A alert pops up to Visualize the code that you typed at your coding station! So, go ahead, 
+        click <strong>Run it</strong> and witness!
         </section>
+        <div className='editor-container'>
+       <JsEditor3 defaultCode={defaultCode}  onExecute={(code) => {
+         try {
+           eval(code); 
+          } catch (error) { 
+            console.error('Error executing code:', error);
+          }}}/>
+          </div>
+          <section>
+          The Friendly Wizard is going to introduce fundamental programming concepts such as variables,
+           data types, conditionals, loops, functions, and objects.
+          </section>
       </div>
-      <div className="lesson-congratulations">
-        <h4>Congratulations!</h4>
-        <p>You've just taken your first steps into the world of web development by setting up your workspace and creating the foundation for our quiz app. In the next lesson, we'll start adding more elements to our quiz app and make it interactive using JavaScript.</p>
-      </div>
+      
+          <h1>Ready to Thrive?</h1>
       <LessonNavigator
         currentLesson={currentLesson}
         totalLessons={totalLessons}
         onNextLesson={handleNextLesson}
         onPreviousLesson={handlePreviousLesson}
       />
+    </div>
+    </div>
     </div>
   );
 }

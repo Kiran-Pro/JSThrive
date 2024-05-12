@@ -32,6 +32,7 @@ const JsEditor: React.FC<CompactCodeEditorProps> = ({ defaultCode }) => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
+    
       <AceEditor
         mode="javascript"
         theme="chaos"

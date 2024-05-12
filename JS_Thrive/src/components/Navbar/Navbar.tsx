@@ -16,19 +16,15 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${lightMode ? 'light-theme' : ''}`}>
       <div className="navbar-brand">
-        <NavLink to="/" className="home-link">
-          J
-          <BoltIcon
-            className={`thunder ${isHovered ? 'animated' : ''}`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            sx={{
-              fontSize: 23, verticalAlign: 'middle'
-            }}
-          />
-          Thrive
-        </NavLink>
-      </div>
+      <NavLink to="/" className="home-link" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        J
+        <BoltIcon
+          className={`thunder ${isHovered ? 'animated' : ''}`}
+          sx={{ fontSize: 23, verticalAlign: 'middle' }}
+        />
+        Thrive
+      </NavLink>
+    </div>
       <div>
         <NavLink to="/" className={({ isActive }) => "nav-link" + (isActive ? " nav-link-active" : "")} end>Home</NavLink>
         <NavLink to="/lesson" className={({ isActive }) => "nav-link" + (isActive ? " nav-link-active" : "")}>Lessons</NavLink>

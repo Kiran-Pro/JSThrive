@@ -72,7 +72,7 @@ const Login = () => {
         <Button type="submit" className={styles.button} disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </Button>
-        <p>Don't have an account? <a href="/register" className={styles.hover_text}>Register</a> here </p>
+        <h4>Don't have an account? <a href="/register" className={styles.hover_text}>Register</a> here </h4>
       </form>
       {error && <p className={styles.errorMessage}>{error}</p>}
     </div>

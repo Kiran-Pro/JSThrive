@@ -1,5 +1,3 @@
-
-
 .navbar {
   background-color: var(--navbar-bg-color);
   color: var(--text-color);
@@ -9,11 +7,15 @@
   align-items: center;
 }
 
-
-.home-link, .navbar-brand, .nav-link , .profile{
+.home-link, .navbar-brand, .nav-link, .profile {
   color: var(--text-color);
   text-decoration: none;
   transition: color 0.3s ease;
+}
+
+.theme-icon:hover {
+  cursor: pointer;
+  color: #8a35e5;
 }
 
 .navbar-brand {
@@ -22,11 +24,6 @@
   transition: transform 0.5s ease, color 0.5s ease;
   transform: translateZ(0); 
 }
-.theme-icon:hover {
-  cursor: pointer;
-  color: #8a35e5;
-}
-
 
 .navbar-brand:hover, .nav-link:hover, .home-link:hover, .profile:hover {
   color: var(--highlight-color);
@@ -42,7 +39,8 @@
   padding: 0.25rem 0.5rem;
   position: relative;
 }
-.profile{
+
+.profile {
   margin: 0 1rem;
   padding: 0.25rem 0.5rem;
   position: relative;
@@ -62,21 +60,20 @@
 .nav-link .profile:hover::after {
   width: 70%;
 }
+
 .nav-link:hover::after {
   width: 100%;
 }
-
 
 .nav-link-active {
   color: var(--highlight-color);
 }
 
-.thunder:hover {
+.thunder {
   transition: transform 0.5s ease, color 0.5s ease;
-  transform: translateZ(0); 
 }
 
-.thunder.animated:hover {
+.home-link:hover .thunder.animated {
   transform: scale(1.5) translateZ(0);
   color: #ffc107;
 }
