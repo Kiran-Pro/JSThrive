@@ -1,7 +1,7 @@
-.lesson-content-container {
+/* .lesson-content-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three columns */
-  align-items: center; /* Align items vertically in the center */
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center; 
   justify-items: center;
   padding: 50px;
 }
@@ -18,5 +18,60 @@
 
 .button {
   padding: 8px 16px;
+}
+ */
+
+ .lesson-content-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  grid-gap: 30px; /* Adds space between columns */
+  align-items: start; /* Aligns items at the start of each cell */
+  justify-items: center; /* Centers items horizontally */
+  padding: 50px; /* Padding around the grid */
+}
+
+@media (max-width: 700px) {
+  .lesson-content-container {
+    grid-template-columns: repeat(2, 1fr); /* Two columns for tablets */
+    padding: 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .lesson-content-container {
+    grid-template-columns: 1fr; /* Single column for mobiles */
+    padding: 10px;
+  }
+}
+
+.lesson_card {
+  width: 300px; /* Fixed width for each lesson card */
+  height: 200px; /* Fixed height for each lesson card */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds shadow for 3D effect */
+  transition: transform 0.3s ease-in-out; /* Smooth transformation on hover */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Inner spacing */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.lesson_card:hover {
+  transform: translateY(-5px); /* Moves card up slightly on hover */
+}
+
+.lesson-title {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-bottom: 10px; /* Space between title and button */
+}
+
+.button {
+  padding: 8px 16px;
+}
+
+.button:hover {
+  background-color: darken(var(--primary-color), 10%); /* Darkens button on hover */
 }
 

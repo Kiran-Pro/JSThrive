@@ -92,3 +92,48 @@ b{
 }
 
 
+.lesson-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px;
+}
+
+@media (max-width: 750px) {
+  .lesson-nav {
+    display: none; /* Hide the lesson navigator for devices <= 400px width */
+  }
+
+  .lesson-container {
+    padding: 20px; /* Reduce padding for small screens */
+    max-width: 100%; /* Use full width to better utilize space */
+  }
+
+  .lesson-title, .lesson-section h3 {
+    font-size: 18px; /* Reduce font size for headers */
+  }
+
+  .lesson-section p, .quiz-container, .input, .label, .submit-button, .badge-text {
+    font-size: 14px; /* Reduce font size for text elements */
+  }
+
+  .figure {
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center alignment */
+    gap: 10px; /* Reduce gap */
+  }
+
+  .figure img {
+    width: 100%; /* Full width for images */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .editor-container {
+    width: 100%; /* Full width for the code editor */
+  }
+
+  .main-con, .inner-con {
+    flex-direction: column; /* Ensure vertical layout for main and inner content */
+  }
+}
+
+

@@ -1,28 +1,224 @@
-
 .profile-container {
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.profile-container:hover {
+  transform: translateY(-10px);
+}
+
+.profile-title {
+  color: var(--highlight-color);
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+span {
+  color: var(--highlight-color);
+}
+
+.user-info-box {
+  background-color: var(--body-bg-color);
+  border-radius: 10px;
+  text-align: left;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  flex: 1;
+}
+
+.user-name, .user-email {
+  color: var(--text-color);
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.progress-bar-container {
+  background-color: var(--border-color);
+  border-radius: 10px;
+  width: 100%;
+  height: 30px;
+  margin: 30px 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #00ff62 0%, #006503 100%);
+  height: 100%;
+  border-radius: 10px;
+  color: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.5s ease-out;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 3px 3px -5px #000, 0 2px 5px #000;
+}
+
+.no-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--text-color);
+  font-size: 14px;
+}
+
+.info-points-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.profile-points-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 15px;
+  justify-content: center;
+  background-color: var(--body-bg-color);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  flex: 1;
+}
+
+.coin-design {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, gold 0%, darkorange 100%);
+  border-radius: 50%;
+  border: 3px solid #ffcc00;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+}
+
+.badge-container {
+  background-color: var(--body-bg-color);
+  padding: 20px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
-  padding: 20px;
-  background-color: var(--card-bg-color); 
-  border-radius: 10px;
-  margin: 20px auto;
-  max-width: 600px;
+  gap: 20px;
+  margin: 30px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.avatar-container {
-  margin-bottom: 20px;
+.badge-container h3 {
+  margin-bottom: 10px;
 }
 
-.user-avatar {
+.badge-image {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
+  border: 3px solid var(--highlight-color);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.profile-title, .user-name, .user-email, .profile-points {
-  margin: 10px 0;
+.badge-image:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.error-container {
+  color: var(--error-color);
+  text-align: center;
+  padding: 20px;
+  border: 1px solid var(--error-border-color);
+  border-radius: 10px;
+  background-color: var(--error-bg-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 20px;
+  }
+
+  .profile-title {
+    font-size: 28px;
+  }
+
+  .info-points-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-info-box, .profile-points-container {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .progress-bar-container {
+    height: 25px;
+  }
+
+  .coin-design {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .user-name, .user-email {
+    font-size: 16px;
+  }
+
+  .badge-container {
+    padding: 10px;
+    margin: 20px 0;
+  }
+
+  .badge-image {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-title {
+    font-size: 24px;
+  }
+
+  .progress-bar-container {
+    height: 20px;
+  }
+
+  .coin-design {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .user-name, .user-email {
+    font-size: 14px;
+  }
+
+  .badge-image {
+    width: 40px;
+    height: 40px;
+  }
 }

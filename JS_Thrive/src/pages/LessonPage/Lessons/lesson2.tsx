@@ -1,9 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import LessonNavigator from '../../../components/LessonNavigator';
 import './Lessons.css';
 import ExploreIcon from '@mui/icons-material/Explore';
 import icon from '../../../resources/boxes.png'
 import JsEditor3 from '../../../components/codeEditor/JsEditor2';
+import Sandbox from '../../../components/codeEditor/SandBox';
+import Quiz from '../../../components/Quiz/Quiz';
+import { firestore,app } from '../../../firebase.config'; // adjust the path as necessary
+import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
+import { useEffect } from 'react';
+import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
+import badge2 from '../../../resources/tortoise_badge.avif'
 
 
 
@@ -13,22 +21,78 @@ var minutesInAnHour = 60;
 var secondsInAnHour = secondsInAMinute * minutesInAnHour;
 alert(secondsInAnHour);`
 
-
-
-
-
-
+const question = 'How many ways to describe a variable';
+const correctAnswer ='3';
 
 
 function Lesson2() {
-  // State for tracking current lesson and total lessons
   const [currentLesson, setCurrentLesson] = useState(2);
-  const totalLessons = 1; // Update the total lessons count accordingly
+  const totalLessons = 9; // Assuming there are 9 lessons total
+  const [progress, setProgress] = useState(22); // Progress in percentage
+  const [badges, setBadges] = useState<string[]>([]); // Correctly typed as an array of strings
+  const [isCompleted, setIsCompleted] = useState(false); // Lesson completion status
+  const [lessonsCompleted, setLessonsCompleted] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
+  const [points,setPoints] = useState(0);
 
-  // Function to handle navigation to the next lesson
-  const handleNextLesson = () => {
-    setCurrentLesson(prevLesson => prevLesson + 1);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(getAuth(app), (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        subscribeToUserData(currentUser.uid);
+      } else {
+        setLoading(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+  
+  const subscribeToUserData = (userId: string) => {
+    const userDocRef = doc(firestore, "users", userId);
+    return onSnapshot(userDocRef, (doc) => {
+      if (doc.exists()) {
+        const userData = doc.data();
+        setLessonsCompleted(userData.lessonsCompleted);
+      } else {
+        console.log("No user data available");
+      }
+      setLoading(false);
+    }, (error) => {
+      console.error("Error fetching user data:", error);
+      setError("Failed to load user data");
+      setLoading(false);
+    });
   };
+
+  const handleQuizCompletion = async (isCorrect: boolean) => {
+    if (isCorrect && user) {
+      const userDocRef = doc(firestore, "users", user.uid);
+      const newBadge = badge2; // Adjust according to your badge system
+  
+      try {
+        await updateDoc(userDocRef, {
+          lessonsCompleted: increment(1),
+          badges: arrayUnion(newBadge),
+          points: increment(100)  // Increment points by 100
+        });
+        console.log("Profile updated successfully with additional points and badge");
+      } catch (error) {
+        console.error("Error updating user profile:", error);
+      }
+    }
+  };
+  
+  
+  
+    const handleNextLesson = () => {
+      if (isCompleted) {
+        setCurrentLesson(prevLesson => prevLesson + 1);
+      } 
+    };
 
   // Function to handle navigation to the previous lesson
   const handlePreviousLesson = () => {
@@ -130,10 +194,19 @@ When you’re learning a new programming language, one of the trickiest parts is
             <section id="CodingStation" className="lesson-section">
               <h2>Time for Fun Coding!</h2>
               <p>Ready to try it yourself? Let's use the magic vortex - code editor below to create your own variables and make cool things happen!</p>
-              <h2 style={{color:'var(--highlight-color2)',textAlign:'center'}}>Let's get into Vortex - our coding challenges</h2>
+              <h2 style={{color:'var(--highlight-color2)',textAlign:'center'}}>Let's get into Vortex - Play Around</h2>
               
-              <h4>Use the code editor to create variables for your characters, their age, and what they like to do.</h4>
+              <h4 style={{textAlign:'center'}}>Use the code editor to create variables for your characters, their age, and what they like to do.</h4>
              <h3 style={{textAlign:'center'}}>Create 3 characters below</h3>
+             <Sandbox src="https://codesandbox.io/embed/lpv7xg?view=editor+%2B+preview&module=%2Fsrc%2Findex.mjs"/>
+             <h3 style={{textAlign:'center'}}>Short Tutorial on How to use the playGround
+             <a href="https://youtu.be/BwxkGm6hxqw?feature=shared" target="_blank"> Here!</a>
+             </h3>
+             <br />
+             <h2 style={{textAlign:'center'}}>Here's a Quiz</h2>
+
+             <Quiz question={question} correctAnswer={correctAnswer} badgeSrc={badge2} onCorrect={() => handleQuizCompletion(true)} />
+             
             
             </section>
           </div>
@@ -149,11 +222,6 @@ When you’re learning a new programming language, one of the trickiest parts is
       </div>
     </div>
   );
+
 }
-
 export default Lesson2;
-
-
-
-
-

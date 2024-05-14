@@ -1,23 +1,93 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import LessonNavigator from '../../../components/LessonNavigator';
 import Icon from '../../../resources/htmlUnderstanding.jpeg'
 import './Lessons.css';
 import ExploreIcon from '@mui/icons-material/Explore';
 import JsEditor3 from '../../../components/codeEditor/JsEditor2';
+import Quiz from '../../../components/Quiz/Quiz';
+import { firestore,app } from '../../../firebase.config'; // adjust the path as necessary
+import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
+import { useEffect } from 'react';
+import badge from "../../../resources/sloth_badge.jpeg";
+import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
+
 
 const defaultCode = `alert("JS IS AWESOME")`;
 
-// const verifyCode = (code: string) => {
-//   return code === 'alert("JS IS AWESOME")';
-// };
+const question = 'Name of the friendly wizard?';
+const correctAnswer = 'JavaScript';
+
 
 function Lesson1() {
 
   
   const [currentLesson, setCurrentLesson] = useState(1);
-  const totalLessons = 9; 
+  const totalLessons = 9; // Assuming there are 9 lessons total
+  const [points,setPoints] = useState(0);
+  const [progress, setProgress] = useState(11); // Progress in percentage
+  const [badges, setBadges] = useState<string[]>([]); // Correctly typed as an array of strings
+  const [isCompleted, setIsCompleted] = useState(false); // Lesson completion status
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
+  const [lessonsCompleted, setLessonsCompleted] = useState<number>(0);
+
+  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(getAuth(app), (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        subscribeToUserData(currentUser.uid);
+      } else {
+        setLoading(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+  
+  const subscribeToUserData = (userId: string) => {
+    const userDocRef = doc(firestore, "users", userId);
+    return onSnapshot(userDocRef, (doc) => {
+      if (doc.exists()) {
+        const userData = doc.data();
+        setLessonsCompleted(userData.lessonsCompleted);
+      } else {
+        console.log("No user data available");
+      }
+      setLoading(false);
+    }, (error) => {
+      console.error("Error fetching user data:", error);
+      setError("Failed to load user data");
+      setLoading(false);
+    });
+  };
+
+  const handleQuizCompletion = async (isCorrect: boolean) => {
+    if (isCorrect && user) {
+      const userDocRef = doc(firestore, "users", user.uid);
+      const newBadge = badge; 
+  
+      try {
+        await updateDoc(userDocRef, {
+          lessonsCompleted: increment(1),
+          badges: arrayUnion(newBadge),
+          points: increment(100)  // Increment points by 100
+        });
+        console.log("Profile updated successfully with additional points and badge");
+      } catch (error) {
+        console.error("Error updating user profile:", error);
+      }
+    }
+  };
+  
+
+
   const handleNextLesson = () => {
-    setCurrentLesson(prevLesson => prevLesson + 1);
+    if (isCompleted) {
+      setCurrentLesson(prevLesson => prevLesson + 1);
+    } 
   };
 
   const handlePreviousLesson = () => {
@@ -96,6 +166,8 @@ function Lesson1() {
           The Friendly Wizard is going to introduce fundamental programming concepts such as variables,
            data types, conditionals, loops, functions, and objects.
           </section>
+<br />
+          <Quiz question={question} correctAnswer={correctAnswer} badgeSrc={badge} onCorrect={()=> handleQuizCompletion(true)}/>
       </div>
       
           <h1>Ready to Thrive?</h1>
