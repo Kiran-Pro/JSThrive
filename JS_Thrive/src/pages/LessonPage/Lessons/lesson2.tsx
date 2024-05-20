@@ -4,7 +4,6 @@ import LessonNavigator from '../../../components/LessonNavigator';
 import './Lessons.css';
 import icon from '../../../resources/boxes.png';
 import JsEditor3 from '../../../components/codeEditor/JsEditor2';
-import Sandbox from '../../../components/codeEditor/SandBox';
 import Quiz from '../../../components/Quiz/Quiz';
 import { firestore, app } from '../../../firebase.config'; 
 import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
@@ -194,10 +193,13 @@ function Lesson2() {
               
               <h4 style={{textAlign:'center'}}>Use the code editor to create variables for your characters, their age, and what they like to do.</h4>
               <h3 style={{textAlign:'center'}}>Create 3 characters below</h3>
-              <Sandbox src="https://codesandbox.io/embed/lpv7xg?view=editor+%2B+preview&module=%2Fsrc%2Findex.mjs"/>
-              <h3 style={{textAlign:'center'}}>Short Tutorial on How to use the playGround
-                <a href="https://youtu.be/BwxkGm6hxqw?feature=shared" target="_blank"> Here!</a>
-              </h3>
+              <JsEditor3 defaultCode='write Here!' onExecute={(code2) => {
+                try {
+                  eval(code2);
+                } catch (error) {
+                  console.error('Error executing code:', error);
+                }
+              }}/>
               <br />
               <h2 style={{textAlign:'center'}}>Here's a Quiz</h2>
 

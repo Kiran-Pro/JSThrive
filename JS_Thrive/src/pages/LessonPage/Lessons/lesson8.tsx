@@ -9,7 +9,7 @@ import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/fire
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
 import badge8 from '../../../resources/cheetah_badge.png';
 import LessonDirector from './LessonDirector';
-import Sandbox from '../../../components/codeEditor/SandBox';
+import Mini_IDE_Simple from '../../../components/codeEditor/Mini_IDE_Simple';
 
 const question = 'What is PseudoCode?';
 const correctAnswer = 'simplified way of writing programming logic';
@@ -256,14 +256,7 @@ checkEvenOdd(number); // Outputs: Odd`}
               <h4 style={{ textAlign: 'center' }}>
                 Use the code editor to write PseudoCode for a problem and then convert it into JavaScript code.
               </h4>
-              <Sandbox src="https://codesandbox.io/embed/new?codemirror=1" />
-              <h3 style={{ textAlign: 'center' }}>
-                Short Tutorial on How to use the playGround
-                <a href="https://youtu.be/BwxkGm6hxqw?feature=shared" target="_blank">
-                  {' '}
-                  Here!
-                </a>
-              </h3>
+              <Mini_IDE_Simple htmlCode=""/>
               <br />
               <h2 style={{ textAlign: 'center' }}>Here's a Quiz</h2>
 

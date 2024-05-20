@@ -4,13 +4,13 @@ import LessonNavigator from '../../../components/LessonNavigator';
 import './Lessons.css';
 import icon from '../../../resources/array.png';
 import JsEditor3 from '../../../components/codeEditor/JsEditor2';
-import Sandbox from '../../../components/codeEditor/SandBox';
 import Quiz from '../../../components/Quiz/Quiz';
 import { firestore, app } from '../../../firebase.config';
 import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
 import badge3 from '../../../resources/snail_badge.png';
 import LessonDirector from './LessonDirector';
+import Mini_IDE from '../../../components/codeEditor/Mini_codeEditor/Mini_IDE';
 
 const defaultCode3 = `var fruits = ["Apple", "Banana", "Mango"];
 alert(fruits.join(", "));`;
@@ -222,10 +222,7 @@ alert(numbers.join(" - ")); // "1 - 2 - 3 - 4 - 5"`} onExecute={(code) => {
               <h2 style={{ color: 'var(--highlight-color2)', textAlign: 'center' }}>Let's get into Vortex - Play Around</h2>
               
               <h4 style={{ textAlign: 'center' }}>Use the code editor to create an array of your favorite movies and manipulate it using different methods.</h4>
-              <Sandbox src="https://codesandbox.io/embed/lpv7xg?view=editor+%2B+preview&module=%2Fsrc%2Findex.mjs" />
-              <h3 style={{ textAlign: 'center' }}>Short Tutorial on How to use the playGround
-                <a href="https://youtu.be/BwxkGm6hxqw?feature=shared" target="_blank"> Here!</a>
-              </h3>
+              <Mini_IDE/>
               <br />
               <h2 style={{ textAlign: 'center' }}>Here's a Quiz</h2>
 

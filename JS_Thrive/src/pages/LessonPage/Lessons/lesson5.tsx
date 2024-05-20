@@ -4,13 +4,13 @@ import LessonNavigator from '../../../components/LessonNavigator';
 import './Lessons.css';
 import icon from '../../../resources/operator.png';
 import JsEditor3 from '../../../components/codeEditor/JsEditor2';
-import Sandbox from '../../../components/codeEditor/SandBox';
 import Quiz from '../../../components/Quiz/Quiz';
 import { firestore, app } from '../../../firebase.config';
 import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
 import badge5 from '../../../resources/panda_badge.png';
 import LessonDirector from './LessonDirector';
+import Mini_IDE from '../../../components/codeEditor/Mini_codeEditor/Mini_IDE';
 
 const question = 'What is the result of 3 + 4 * 2?';
 const correctAnswer = '11';
@@ -268,14 +268,7 @@ alert(a += b); // Outputs: 8`}
               <h4 style={{ textAlign: 'center' }}>
                 Use the code editor to create different expressions using arithmetic, comparison, logical, and assignment operators.
               </h4>
-              <Sandbox src="https://codesandbox.io/embed/new?codemirror=1" />
-              <h3 style={{ textAlign: 'center' }}>
-                Short Tutorial on How to use the playGround
-                <a href="https://youtu.be/BwxkGm6hxqw?feature=shared" target="_blank">
-                  {' '}
-                  Here!
-                </a>
-              </h3>
+              <Mini_IDE/>
               <br />
               <h2 style={{ textAlign: 'center' }}>Here's a Quiz</h2>
 

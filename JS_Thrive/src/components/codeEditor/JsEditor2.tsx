@@ -6,7 +6,7 @@ import 'ace-builds/src-noconflict/theme-chaos';
 
 interface CompactCodeEditorProps {
   defaultCode: string;
-  onExecute: (code: string) => void;
+  onExecute?: (code: string) => void;
 }
 
 const JsEditor2: React.FC<CompactCodeEditorProps> = ({ defaultCode, onExecute }) => {

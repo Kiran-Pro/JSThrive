@@ -8,12 +8,14 @@ import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/fire
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
 import badge5 from '../../../resources/lion_badge.png';
 import LessonDirector from './LessonDirector';
-import Sandbox from '../../../components/codeEditor/SandBox';
-import HtmlEditor from '../../../components/codeEditor/HtmlEditor';
+import Mini_IDE from '../../../components/codeEditor/Mini_codeEditor/Mini_IDE';
+import Mini_IDE_Simple from '../../../components/codeEditor/Mini_IDE_Simple';
+import JsEditor2 from '../../../components/codeEditor/JsEditor2';
 
 const question = 'What is the purpose of the parseInt function in JavaScript?';
 const correctAnswer = 'Converts a string into an integer.';
-const htmlCode = `<!DOCTYPE html>
+
+const defaultHTML=`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,7 +35,112 @@ const htmlCode = `<!DOCTYPE html>
     </div>
     <script src="script.js"></script>
 </body>
-</html>`
+</html>
+`
+const defaultCSS=`body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#game-container {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #32908F;
+}
+
+#message, #result {
+  font-size: 1.2em;
+  margin: 20px 0;
+}
+
+#input-container {
+  margin-bottom: 20px;
+}
+
+#guess-input {
+  padding: 10px;
+  font-size: 1em;
+}
+
+#submit-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #32908F;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#submit-button:hover {
+  background-color: #287a6e;
+}
+`
+const defaultJS=`
+
+// Get references to HTML elements
+
+const message = document.getElementById('message');
+const guessInput = document.getElementById('guess-input');
+const submitButton = document.getElementById('submit-button');
+const result = document.getElementById('result');
+
+// Initialize game variables
+
+let randomNumber = Math.floor(Math.random() * 100) + 1;
+let attempts = 0;
+
+// Function to start a new game
+
+function newGame() {
+  randomNumber = Math.floor(Math.random() * 100) + 1;
+  attempts = 0;
+  message.innerText = 'Guess a number between 1 and 100';
+  result.innerText = '';
+  guessInput.value = '';
+  guessInput.disabled = false;
+  submitButton.disabled = false;
+}
+
+// Function to check the guess
+
+function checkGuess() {
+  const userGuess = parseInt(guessInput.value);
+  attempts++;
+  if (userGuess === randomNumber) {
+    result.innerText =
+      'Congratulations! You guessed the number in ' + attempts + ' attempts.';
+    guessInput.disabled = true;
+    submitButton.disabled = true;
+  } else if (userGuess < randomNumber) {
+    message.innerText = 'Too low! Try again.';
+  } else if (userGuess > randomNumber) {
+    message.innerText = 'Too high! Try again.';
+  } else {
+    message.innerText = 'Please enter a valid number.';
+  }
+}
+
+// Add event listener to the submit button
+
+submitButton.addEventListener('click', checkGuess);
+
+// Start a new game when the page loads
+
+newGame();
+`
+
 
 const lessons = [
   { label: 'Introduction', href: '#Introduction' },
@@ -152,7 +259,7 @@ function Lesson9() {
             <section id="HTMLStructure" className="lesson-section">
               <h2>HTML Structure</h2>
               <p>Here's the HTML structure for our game. It includes a title, a container for the game, and an input field for entering guesses.</p>
-              <HtmlEditor initialHtml={htmlCode}/>
+              <Mini_IDE_Simple htmlCode={defaultHTML}/>
               <p>This is the basic HTML structure for our game. It includes a title, a container for the game, and an input field for entering guesses.
                 Go and Play around, it has  <b>Live editor</b> in it!
               </p>
@@ -161,119 +268,29 @@ function Lesson9() {
             <section id="CSSStyling" className="lesson-section">
               <h2>CSS Styling</h2>
               <p>Now, let's style our game to make it look clean and user-friendly. Here's the CSS:</p>
-              <pre>
-                <code>
-                  {`body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-
-#game-container {
-  max-width: 600px;
-  margin: 100px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  color: #32908F;
-}
-
-#message, #result {
-  font-size: 1.2em;
-  margin: 20px 0;
-}
-
-#input-container {
-  margin-bottom: 20px;
-}
-
-#guess-input {
-  padding: 10px;
-  font-size: 1em;
-}
-
-#submit-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  background-color: #32908F;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#submit-button:hover {
-  background-color: #287a6e;
-}`}
-                </code>
-              </pre>
+              <Mini_IDE_Simple htmlCode={defaultHTML} cssCode={defaultCSS}/>
               <p>This CSS styles the game container, input field, and button to make the game look clean and user-friendly.</p>
             </section>
 
             <section id="JavaScriptFunctionality" className="lesson-section">
               <h2>JavaScript Functionality</h2>
               <p>Let's add the JavaScript functionality to our game. This code handles the game logic, including generating a random number, checking the user's guess, and providing feedback.</p>
-              <pre>
-                <code>
-                  {`// Get references to HTML elements
-const message = document.getElementById('message');
-const guessInput = document.getElementById('guess-input');
-const submitButton = document.getElementById('submit-button');
-const result = document.getElementById('result');
-
-// Initialize game variables
-let randomNumber = Math.floor(Math.random() * 100) + 1;
-let attempts = 0;
-
-// Function to start a new game
-function newGame() {
-  randomNumber = Math.floor(Math.random() * 100) + 1;
-  attempts = 0;
-  message.innerText = 'Guess a number between 1 and 100';
-  result.innerText = '';
-  guessInput.value = '';
-  guessInput.disabled = false;
-  submitButton.disabled = false;
-}
-
-// Function to check the guess
-function checkGuess() {
-  const userGuess = parseInt(guessInput.value);
-  attempts++;
-  if (userGuess === randomNumber) {
-    result.innerText = \`Congratulations! You guessed the number in \${attempts} attempts.\`;
-    guessInput.disabled = true;
-    submitButton.disabled = true;
-  } else if (userGuess < randomNumber) {
-    message.innerText = 'Too low! Try again.';
-  } else if (userGuess > randomNumber) {
-    message.innerText = 'Too high! Try again.';
-  } else {
-    message.innerText = 'Please enter a valid number.';
-  }
-}
-
-// Add event listener to the submit button
-submitButton.addEventListener('click', checkGuess);
-
-// Start a new game when the page loads
-newGame();`}
-                </code>
-              </pre>
+              <JsEditor2 defaultCode={defaultJS} />
               <p>This JavaScript code handles the game logic, including generating a random number, checking the user's guess, and providing feedback.</p>
+              <h3>
+              Step 1: Get References to HTML Elements
+              </h3>
+              <p>We have four special "boxes" in our HTML: message, guess-input, submit-button, and result.
+message will show hints like "Too low!" or "Too high!".
+guess-input is where you type your guess.
+submit-button is the button you click to submit your guess.
+result will show the final message when you guess the correct number.</p>
             </section>
 
             <section id="InteractiveCodeEditor" className="lesson-section">
               <h2>Interactive Code Editor</h2>
               <p>Let's experiment with the code using the editor below. Try making changes to see how it affects the game!</p>
-              
+              <Mini_IDE defaultHTML={defaultHTML} defaultCSS={defaultCSS} defaultJS={defaultJS}/>
             </section>
 
             <section id="Quiz" className="lesson-section">
