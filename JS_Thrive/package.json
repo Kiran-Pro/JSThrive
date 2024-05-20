@@ -17,6 +17,7 @@
     "ace-builds": "^1.33.1",
     "cors": "^2.8.5",
     "firebase": "^10.9.0",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-ace": "^11.0.1",
     "react-dom": "^18.2.0",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@types/firebase": "^3.2.1",
+    "@types/prismjs": "^1.26.4",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

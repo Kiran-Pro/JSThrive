@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../../firebase.config';
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, firestore } from '../../firebase.config';
 import { FirebaseError } from 'firebase/app';
 import styles from './UserAuthentication.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -28,9 +29,29 @@ const Register = () => {
       await updateProfile(userCredential.user, {
         displayName: name,
       });
+
+      // Create a Firestore document for the new user with the specified schema
+      const userDocRef = doc(firestore, 'users', userCredential.user.uid);
+      await setDoc(userDocRef, {
+        lessonsCompleted: 0,
+        badges: [],
+        points: 0,
+        lessonQuizzes: {
+          lesson1: false,
+          lesson2: false,
+          lesson3: false,
+          lesson4: false,
+          lesson5: false,
+          lesson6: false,
+          lesson7: false,
+          lesson8: false,
+          lesson9: false,
+          
+        },
+      });
+
       alert('User registered successfully!');
       navigate('/login');
-      // Redirect or clear form here as needed
     } catch (error: unknown) {
       setError((error as FirebaseError).message);
     }
@@ -81,7 +102,7 @@ const Register = () => {
           />
         </div>
         <button type="submit" className={styles.button}>Register</button>
-        <p>Already have a account ? <a href="/login">Login</a> </p>
+        <p>Already have an account? <a href="/login">Login</a></p>
       </form>
       {error && <p className={styles.errorMessage}>{error}</p>}
     </div>
