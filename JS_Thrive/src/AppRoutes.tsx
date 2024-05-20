@@ -27,29 +27,29 @@ const AppRoutes = () => {
   return (
     <ThemeProvider>
       <NotificationProvider>
-          <Router>
-            <Navbar />
-            <Suspense fallback={<Loader/>}>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/lesson" element={<LessonContainer />} />
-                <Route path="/lesson1" element={<Lesson1 />} />
-                <Route path="/lesson2" element={<Lesson2/>} />
-                <Route path="/lesson3" element={<Lesson3/>} />
-                <Route path="/lesson4" element={<Lesson4/>} />
-                <Route path="/lesson5" element={<Lesson5/>} />
-                <Route path="/lesson6" element={<Lesson6/>} />
-                <Route path="/lesson7" element={<Lesson7/>} />
-                <Route path="/lesson8" element={<Lesson8/>} />
-                <Route path="/lesson9" element={<Lesson9/>} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/forgetPass" element={<ForgetPassword/>} />
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            </Suspense>
-          </Router>
+        <Router>
+          <Navbar />
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/lesson" element={<LessonContainer />} />
+              <Route path="/lesson1" element={<Lesson1 />} />
+              <Route path="/lesson2" element={<Lesson2 />} />
+              <Route path="/lesson3" element={<Lesson3 />} />
+              <Route path="/lesson4" element={<Lesson4 />} />
+              <Route path="/lesson5" element={<Lesson5 />} />
+              <Route path="/lesson6" element={<Lesson6 />} />
+              <Route path="/lesson7" element={<Lesson7 />} />
+              <Route path="/lesson8" element={<Lesson8 />} />
+              <Route path="/lesson9" element={<Lesson9 />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/forgetPass" element={<ForgetPassword />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </Router>
       </NotificationProvider>
     </ThemeProvider>
   );

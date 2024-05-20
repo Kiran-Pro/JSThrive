@@ -23,7 +23,7 @@ export const NotificationProvider: React.FC<{children: ReactNode}> = ({ children
   const showMessage = (newMessage: string) => {
     setMessage(newMessage);
     setVisible(true);
-    setTimeout(() => setVisible(false), 3000); // Hide after 3 seconds
+    setTimeout(() => setVisible(false), 3000); 
   };
 
   return (

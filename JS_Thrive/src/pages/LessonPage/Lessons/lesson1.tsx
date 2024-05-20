@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import LessonNavigator from '../../../components/LessonNavigator';
 import Icon from '../../../resources/htmlUnderstanding.jpeg';
 import './Lessons.css';
-import JsEditor3 from '../../../components/codeEditor/JsEditor2';
+import JsEditor3 from '../../../components/codeEditor/JsEditor';
 import Quiz from '../../../components/Quiz/Quiz';
-import { firestore, app } from '../../../firebase.config'; // Adjust the path as necessary
+import { firestore, app } from '../../../firebase.config'; 
 import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
 import LessonDirector from './LessonDirector';
@@ -22,16 +22,16 @@ const lessons = [
 
 function Lesson1() {
   const [currentLesson, setCurrentLesson] = useState(1);
-  const totalLessons = 9; // Assuming there are 9 lessons total
+  const totalLessons = 9; 
   const [points, setPoints] = useState(0);
-  const [progress, setProgress] = useState(11); // Progress in percentage
+  const [progress, setProgress] = useState(11); 
   const [badges, setBadges] = useState<string[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [lessonsCompleted, setLessonsCompleted] = useState<number>(0);
-  const [quizCompleted, setQuizCompleted] = useState<boolean>(false); // New state for quiz completion
+  const [quizCompleted, setQuizCompleted] = useState<boolean>(false); 
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(app), (currentUser) => {
@@ -54,7 +54,7 @@ function Lesson1() {
         setLessonsCompleted(userData.lessonsCompleted);
         setBadges(userData.badges || []);
         setPoints(userData.points || 0);
-        setQuizCompleted(userData.lessonQuizzes?.lesson1 || false); // Load quiz completion state for lesson 1
+        setQuizCompleted(userData.lessonQuizzes?.lesson1 || false); 
         setProgress(((userData.lessonsCompleted || 0) / totalLessons) * 100);
       } else {
         console.log("No user data available");
@@ -77,9 +77,9 @@ function Lesson1() {
           lessonsCompleted: increment(1),
           badges: arrayUnion(newBadge),
           points: increment(100),
-          [`lessonQuizzes.lesson1`]: true, // Mark the lesson1 quiz as completed
+          [`lessonQuizzes.lesson1`]: true,
         });
-        // Use functional updates to ensure state changes correctly reflect dependencies
+       
         setLessonsCompleted(prev => {
           const newCount = prev + 1;
           setProgress((newCount / totalLessons) * 100);
@@ -87,7 +87,7 @@ function Lesson1() {
         });
         setBadges(prev => [...prev, newBadge]);
         setPoints(prev => prev + 100);
-        setQuizCompleted(true); // Update local state
+        setQuizCompleted(true); 
         console.log("Profile updated successfully with additional points and badge");
       } catch (error) {
         console.error("Error updating user profile:", error);

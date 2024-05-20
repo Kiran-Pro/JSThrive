@@ -6,33 +6,20 @@ import 'ace-builds/src-noconflict/theme-chaos';
 
 interface CompactCodeEditorProps {
   defaultCode: string;
+  onExecute?: (code: string) => void;
 }
 
-const JsEditor: React.FC<CompactCodeEditorProps> = ({ defaultCode }) => {
+const JsEditor: React.FC<CompactCodeEditorProps> = ({ defaultCode, onExecute }) => {
   const [code, setCode] = useState(defaultCode);
-  const [output, setOutput] = useState('');
 
   const executeCode = () => {
-    try {
-      let logOutput = '';
-      const originalConsoleLog = console.log;
-      console.log = (...messages) => {
-        logOutput += messages.join(' ');
-      };
-
-      new Function(code)();
-
-      setOutput(logOutput);
-      console.log = originalConsoleLog;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      setOutput(error.toString());
+    if (onExecute) {
+      onExecute(code);
     }
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
-    
+    <div className="editor-container" style={{ margin: '20px auto', maxWidth: '600px', textAlign: 'center' }}>
       <AceEditor
         mode="javascript"
         theme="chaos"
@@ -40,28 +27,22 @@ const JsEditor: React.FC<CompactCodeEditorProps> = ({ defaultCode }) => {
         value={code}
         name="js-editor"
         editorProps={{ $blockScrolling: true }}
-        width="50%"
-        height="250px"
+        width="100%"
+        height="200px"
       />
-      <div style={{ width: '48%', position: 'relative', minHeight: '150px', border: '1px solid #ccc', padding: '10px', paddingTop: '40px',backgroundColor:'white',color:"black",fontSize:"1.3rem" }}>
-        <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{output}</pre>
-        <button
-          onClick={executeCode}
-          style={{
-            position: 'absolute',
-            bottom: '10px',
-            right: '10px',
-            padding: '5px 10px',
-            backgroundColor: 'black',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          Execute Code
-        </button>
-      </div>
+      <button 
+      className='button'
+        onClick={executeCode} 
+        style={{ 
+          fontSize: '0.8rem', 
+          padding: '0.5rem', 
+          backgroundColor: 'var(--highlight-color)',
+          color: 'white',
+          marginTop: '10px'
+        }}
+      >
+    Run it
+      </button>
     </div>
   );
 };

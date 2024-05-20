@@ -13,45 +13,48 @@ function LessonNavigator({ currentLesson, totalLessons, onNextLesson, onPrevious
   const navigate = useNavigate();
 
   const handleNextLesson = () => {
-    onNextLesson();
-    navigate(`/lesson${currentLesson + 1}`);
+    if (currentLesson < totalLessons) {
+      onNextLesson();
+      navigate(`/lesson${currentLesson + 1}`);
+    }
   };
 
   const handlePreviousLesson = () => {
-    onPreviousLesson();
-    navigate(`/lesson${currentLesson - 1}`);
+    if (currentLesson > 1) {
+      onPreviousLesson();
+      navigate(`/lesson${currentLesson - 1}`);
+    }
   };
 
   return (
     <div>
-     <button
-      className="button" 
-      onClick={handlePreviousLesson}
-      disabled={currentLesson === 1}
-      style={{
-    border: 'none',
-    padding: 0,
-    backgroundColor: 'transparent',
-    cursor: currentLesson === 1 ? 'not-allowed' : 'pointer', // Set cursor to not-allowed if disabled
-  }}
->
-  <ArrowCircleLeftIcon sx={{ color: currentLesson === 1 ? 'gray' : 'var(--highlight-color)', fontSize: '60px' }} />
-</button>
+      <button
+        className="button"
+        onClick={handlePreviousLesson}
+        disabled={currentLesson === 1}
+        style={{
+          border: 'none',
+          padding: 0,
+          backgroundColor: 'transparent',
+          cursor: currentLesson === 1 ? 'not-allowed' : 'pointer',
+        }}
+      >
+        <ArrowCircleLeftIcon sx={{ color: currentLesson === 1 ? 'gray' : 'var(--highlight-color)', fontSize: '60px' }} />
+      </button>
 
-<button
-  className='button'
-  onClick={handleNextLesson}
-  disabled={currentLesson === totalLessons}
-  style={{
-    border: 'none',
-    padding: 0,
-    backgroundColor: 'transparent',
-    cursor: currentLesson === totalLessons ? 'not-allowed' : 'pointer', // Set cursor to not-allowed if disabled
-  }}
->
-  <ArrowCircleRightIcon sx={{ color: currentLesson === totalLessons ? 'gray' : 'var(--highlight-color)', fontSize: '60px' }} />
-</button>
-
+      <button
+        className='button'
+        onClick={handleNextLesson}
+        disabled={currentLesson === totalLessons}
+        style={{
+          border: 'none',
+          padding: 0,
+          backgroundColor: 'transparent',
+          cursor: currentLesson === totalLessons ? 'not-allowed' : 'pointer',
+        }}
+      >
+        <ArrowCircleRightIcon sx={{ color: currentLesson === totalLessons ? 'gray' : 'var(--highlight-color)', fontSize: '60px' }} />
+      </button>
     </div>
   );
 }

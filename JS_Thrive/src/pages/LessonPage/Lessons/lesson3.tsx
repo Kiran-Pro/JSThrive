@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import LessonNavigator from '../../../components/LessonNavigator';
 import './Lessons.css';
 import icon from '../../../resources/array.png';
-import JsEditor3 from '../../../components/codeEditor/JsEditor2';
+import JsEditor from '../../../components/codeEditor/JsEditor';
 import Quiz from '../../../components/Quiz/Quiz';
 import { firestore, app } from '../../../firebase.config';
 import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
@@ -60,7 +60,7 @@ function Lesson3() {
         setLessonsCompleted(userData.lessonsCompleted);
         setBadges(userData.badges || []);
         setPoints(userData.points || 0);
-        setQuizCompleted(userData.lessonQuizzes?.lesson3 || false); // Load quiz completion state for lesson 3
+        setQuizCompleted(userData.lessonQuizzes?.lesson3 || false); 
         setProgress(((userData.lessonsCompleted || 0) / totalLessons) * 100);
       } else {
         console.log("No user data available");
@@ -83,7 +83,7 @@ function Lesson3() {
           lessonsCompleted: increment(1),
           badges: arrayUnion(newBadge),
           points: increment(100),
-          [`lessonQuizzes.lesson3`]: true, // Mark the lesson3 quiz as completed
+          [`lessonQuizzes.lesson3`]: true, 
         });
         setLessonsCompleted(prev => {
           const newCount = prev + 1;
@@ -162,7 +162,7 @@ function Lesson3() {
               <p>Let’s see an example of how we can use some of these methods:</p>
               <pre><code><b>var</b> fruits = ["Apple", "Banana", "Mango"];
 alert(fruits.join(", ")); // Output: Apple, Banana, Mango</code></pre>
-              <JsEditor3 defaultCode={defaultCode3} onExecute={(code) => {
+              <JsEditor defaultCode={defaultCode3} onExecute={(code) => {
                 try {
                   eval(code);
                 } catch (error) {
@@ -181,7 +181,7 @@ alert(fruits.join(", ")); // Output: Apple, Banana, Mango</code></pre>
               <pre><code><b>var</b> secondFruit = fruits[1]; // Banana</code></pre>
               <p>Remember, the index starts from 0!</p>
               <p>Let's add some elements to our mixed array and print them:</p>
-              <JsEditor3 defaultCode={`<b>var</b> mixedArray = [42, "Hello", [1, 2, 3]];
+              <JsEditor defaultCode={`<b>var</b> mixedArray = [42, "Hello", [1, 2, 3]];
 alert(mixedArray[1]); // Hello`} onExecute={(code) => {
                 try {
                   eval(code);
@@ -204,7 +204,7 @@ numbers.pop(); // [1, 2, 3, 4, 5]</code></pre>
               <pre><code>// Joining elements into a string <br />
 <b>var</b> joinedNumbers = numbers.join(" - ");
 alert(joinedNumbers); // "1 - 2 - 3 - 4 - 5"</code></pre>
-              <JsEditor3 defaultCode={`<b>var</b> numbers = [1, 2, 3, 4, 5];
+              <JsEditor defaultCode={`<b>var</b> numbers = [1, 2, 3, 4, 5];
 alert(numbers.join(" - ")); // "1 - 2 - 3 - 4 - 5"`} onExecute={(code) => {
                 try {
                   eval(code);
@@ -215,7 +215,7 @@ alert(numbers.join(" - ")); // "1 - 2 - 3 - 4 - 5"`} onExecute={(code) => {
             </section>
             <br />
 
-            {/* Coding Station section */}
+        
             <section id="CodingStation" className="lesson-section">
               <h2>Time for Fun Coding!</h2>
               <p>Ready to try it yourself? Let's use the magic vortex - code editor below to create your own arrays and experiment with different methods!</p>
@@ -231,7 +231,7 @@ alert(numbers.join(" - ")); // "1 - 2 - 3 - 4 - 5"`} onExecute={(code) => {
           </div>
         </div>
 
-        {/* Lesson navigation */}
+
         <LessonNavigator
           currentLesson={currentLesson}
           totalLessons={totalLessons}

@@ -5,20 +5,20 @@ interface QuizQuestion {
   question: string;
   correctAnswer: string;
   badgeSrc: string;
-  onCorrect: () => void; // Callback function for correct answers
-  quizCompleted: boolean; // Prop to indicate if the quiz has already been completed
+  onCorrect: () => void; 
+  quizCompleted: boolean; 
 }
 
 const Quiz: React.FC<QuizQuestion> = ({ question, correctAnswer, badgeSrc, onCorrect, quizCompleted }) => {
   const [answer, setAnswer] = useState('');
   const [showBadge, setShowBadge] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [dummyReset, setDummyReset] = useState(false); // Local state to control dummy reset
+  const [dummyReset, setDummyReset] = useState(false); 
 
   useEffect(() => {
     if (quizCompleted && !dummyReset) {
       setShowBadge(true);
-      setIsCorrect(true); // Assuming quizCompleted means the user answered correctly before
+      setIsCorrect(true); 
     }
   }, [quizCompleted, dummyReset]);
 
@@ -51,7 +51,7 @@ const Quiz: React.FC<QuizQuestion> = ({ question, correctAnswer, badgeSrc, onCor
     setAnswer('');
     setShowBadge(false);
     setIsCorrect(false);
-    setDummyReset(true); // Trigger dummy reset
+    setDummyReset(true); 
   };
 
   return (

@@ -22,7 +22,7 @@
 
   .nav-link, .profile {
     padding: 0.5rem 0;
-    margin: 0 10px; /* Reduced margin for smaller screens */
+    margin: 0 10px; 
   }
 
   .navbar-brand {
@@ -36,15 +36,15 @@
   }
 
   .nav-link, .profile, .navbar-brand {
-    font-size: 0.8rem; /* Smaller font size for mobile devices */
+    font-size: 0.8rem;
   }
 
   .nav-link {
-    margin: 0 5px; /* Even smaller margin for mobile screens */
+    margin: 0 5px; 
   }
 
   .theme-icon, .profile {
-    display: none; /* Hide icons to save space */
+    display: none; 
   }
 }
 

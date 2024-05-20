@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import LessonNavigator from '../../../components/LessonNavigator';
 import './Lessons.css';
 import icon from '../../../resources/boxes.png';
-import JsEditor3 from '../../../components/codeEditor/JsEditor2';
 import Quiz from '../../../components/Quiz/Quiz';
 import { firestore, app } from '../../../firebase.config'; 
 import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
 import badge2 from '../../../resources/tortoise_badge.png';
 import LessonDirector from './LessonDirector';
+import JsEditor from '../../../components/codeEditor/JsEditor';
 
 const defaultCode2 = `var secondsInAMinute = 60;
 var minutesInAnHour = 60;
@@ -28,8 +28,8 @@ const lessons = [
 
 function Lesson2() {
   const [currentLesson, setCurrentLesson] = useState(2);
-  const totalLessons = 9; // Assuming there are 9 lessons total
-  const [progress, setProgress] = useState(22); // Progress in percentage
+  const totalLessons = 9; 
+  const [progress, setProgress] = useState(22); 
   const [badges, setBadges] = useState<string[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
   const [lessonsCompleted, setLessonsCompleted] = useState<number>(0);
@@ -61,7 +61,7 @@ function Lesson2() {
         setLessonsCompleted(userData.lessonsCompleted);
         setBadges(userData.badges || []);
         setPoints(userData.points || 0);
-        setQuizCompleted(userData.lessonQuizzes?.lesson2 || false); // Load quiz completion state for lesson 2
+        setQuizCompleted(userData.lessonQuizzes?.lesson2 || false); 
         setProgress(((userData.lessonsCompleted || 0) / totalLessons) * 100);
       } else {
         console.log("No user data available");
@@ -84,7 +84,7 @@ function Lesson2() {
           lessonsCompleted: increment(1),
           badges: arrayUnion(newBadge),
           points: increment(100),
-          [`lessonQuizzes.lesson2`]: true, // Mark the lesson2 quiz as completed
+          [`lessonQuizzes.lesson2`]: true, 
         });
         setLessonsCompleted(prev => {
           const newCount = prev + 1;
@@ -162,7 +162,7 @@ function Lesson2() {
                 which is like saying, “Tell me the value of secondsInAnHour right now!” JavaScript then gives you the answer: it’s 3600.
               </p>
 
-              <JsEditor3 defaultCode={defaultCode2} onExecute={(code) => {
+              <JsEditor defaultCode={defaultCode2} onExecute={(code) => {
                 try {
                   eval(code);
                 } catch (error) {
@@ -172,7 +172,7 @@ function Lesson2() {
             </section>
             <br />
 
-            {/* Data types section */}
+        
             <section id="DataTypes" className="lesson-section">
               <h2>Explore Data Types</h2>
               <p>Now, let's talk about the different types of things JavaScript understands:</p>
@@ -185,7 +185,7 @@ function Lesson2() {
               </ul>
             </section>
 
-            {/* Coding Station section */}
+            
             <section id="CodingStation" className="lesson-section">
               <h2>Time for Fun Coding!</h2>
               <p>Ready to try it yourself? Let's use the magic vortex - code editor below to create your own variables and make cool things happen!</p>
@@ -193,7 +193,7 @@ function Lesson2() {
               
               <h4 style={{textAlign:'center'}}>Use the code editor to create variables for your characters, their age, and what they like to do.</h4>
               <h3 style={{textAlign:'center'}}>Create 3 characters below</h3>
-              <JsEditor3 defaultCode='write Here!' onExecute={(code2) => {
+              <JsEditor defaultCode='write Here!' onExecute={(code2) => {
                 try {
                   eval(code2);
                 } catch (error) {
@@ -208,7 +208,7 @@ function Lesson2() {
           </div>
         </div>
 
-        {/* Lesson navigation */}
+  
         <LessonNavigator
           currentLesson={currentLesson}
           totalLessons={totalLessons}

@@ -6,14 +6,14 @@ import Quiz from '../../../components/Quiz/Quiz';
 import { firestore, app } from '../../../firebase.config';
 import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
-import badge5 from '../../../resources/lion_badge.png';
+import badge9 from '../../../resources/lion_badge.png';
 import LessonDirector from './LessonDirector';
 import Mini_IDE from '../../../components/codeEditor/Mini_codeEditor/Mini_IDE';
 import Mini_IDE_Simple from '../../../components/codeEditor/Mini_IDE_Simple';
-import JsEditor2 from '../../../components/codeEditor/JsEditor2';
+import JsEditor2 from '../../../components/codeEditor/JsEditor';
 
 const question = 'What is the purpose of the parseInt function in JavaScript?';
-const correctAnswer = 'Converts a string into an integer.';
+const correctAnswer = 'Converts a string into an integer';
 
 const defaultHTML=`<!DOCTYPE html>
 <html lang="en">
@@ -147,13 +147,13 @@ const lessons = [
   { label: 'HTML Structure', href: '#HTMLStructure' },
   { label: 'CSS Styling', href: '#CSSStyling' },
   { label: 'JavaScript Functionality', href: '#JavaScriptFunctionality' },
-  { label: 'Interactive Code Editor', href: '#InteractiveCodeEditor' },
+  { label: 'CodingStation', href: '#CodingStation' },
   { label: 'Quiz', href: '#Quiz' },
 ];
 
 function Lesson9() {
-  const [currentLesson, setCurrentLesson] = useState(0);
-  const totalLessons = lessons.length;
+  const [currentLesson, setCurrentLesson] = useState(9);
+  const totalLessons = 9;
   const [progress, setProgress] = useState(0);
   const [badges, setBadges] = useState<string[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -185,7 +185,7 @@ function Lesson9() {
         setLessonsCompleted(userData.lessonsCompleted);
         setBadges(userData.badges || []);
         setPoints(userData.points || 0);
-        setQuizCompleted(userData.lessonQuizzes?.lessonNumberGuessingGame || false); // Load quiz completion state for the lesson
+        setQuizCompleted(userData.lessonQuizzes?.lesson9 || false); 
         setProgress(((userData.lessonsCompleted || 0) / totalLessons) * 100);
       } else {
         console.log("No user data available");
@@ -201,14 +201,14 @@ function Lesson9() {
   const handleQuizCompletion = async (isCorrect: boolean) => {
     if (isCorrect && user && !quizCompleted) {
       const userDocRef = doc(firestore, "users", user.uid);
-      const newBadge = badge5;
+      const newBadge = badge9;
 
       try {
         await updateDoc(userDocRef, {
           lessonsCompleted: increment(1),
           badges: arrayUnion(newBadge),
           points: increment(100),
-          [`lessonQuizzes.lesson9`]: true, // Mark the lesson quiz as completed
+          [`lessonQuizzes.lesson9`]: true, 
         });
         setLessonsCompleted((prev) => {
           const newCount = prev + 1;
@@ -226,14 +226,14 @@ function Lesson9() {
   };
 
   const handleNextLesson = () => {
-    if (currentLesson < totalLessons - 1) {
+    if (currentLesson < totalLessons) {
       setCurrentLesson((prevLesson) => prevLesson + 1);
       setProgress(((currentLesson + 1) / totalLessons) * 100);
     }
   };
 
   const handlePreviousLesson = () => {
-    if (currentLesson > 0) {
+    if (currentLesson > 1) {
       setCurrentLesson((prevLesson) => prevLesson - 1);
       setProgress(((currentLesson - 1) / totalLessons) * 100);
     }
@@ -277,18 +277,67 @@ function Lesson9() {
               <p>Let's add the JavaScript functionality to our game. This code handles the game logic, including generating a random number, checking the user's guess, and providing feedback.</p>
               <JsEditor2 defaultCode={defaultJS} />
               <p>This JavaScript code handles the game logic, including generating a random number, checking the user's guess, and providing feedback.</p>
+              <br />
               <h3>
-              Step 1: Get References to HTML Elements
+             Get References to HTML Elements
               </h3>
-              <p>We have four special "boxes" in our HTML: message, guess-input, submit-button, and result.
-message will show hints like "Too low!" or "Too high!".
-guess-input is where you type your guess.
-submit-button is the button you click to submit your guess.
-result will show the final message when you guess the correct number.</p>
+              <ul>
+                <li>We have four special "boxes" in our HTML: message, guess-input, submit-button, and result.</li>
+               <li> message will show hints like "Too low!" or "Too high!".</li>
+               <li>guess-input is where you type your guess.</li>
+               <li>submit-button is the button you click to submit your guess.</li>
+               <li> result will show the final message when you guess the correct number.</li>
+               </ul>
+               <br />
+               <h3>
+              Initialize Game Variables
+               </h3>
+               <ul>
+                <li><b>randomNumber</b> is a secret number between 1 and 100 that you need to guess.</li>
+                <li><b>attempts</b> keeps track of how many guesses you've made.</li>
+             
+               </ul>
+               <br />
+               <h3>
+               Start a New Game
+               </h3>
+               <ul>
+                <li>The <b>newGame</b> function resets everything to start a new game.</li>
+                <li>It picks a new secret number.</li>
+                <li>It sets attempts back to 0.</li>
+                <li>It updates the message to tell you to guess a number between 1 and 100.</li>
+                <li>It clears the result and guessInput fields.</li>
+                <li>It makes sure you can type and click the button again.</li>
+               </ul>
+               <br />
+               <h3>
+               Check the Guess
+               </h3>
+               <ul>
+                <li>The <b>checkGuess</b> function checks if your guess is right.</li>
+                <li>It gets your guess from the guessInput and turns it into a number using parseInt.</li>
+                <li>It adds 1 to attempts because you made a guess.</li>
+                <li>If your guess is correct (userGuess === randomNumber), it shows a congratulations message, and stops you from typing or clicking again by disabling the input and button.</li>
+                <li>If your guess is too low (userGuess lesser than randomNumber), it shows "Too low! Try again."</li>
+                <li>If your guess is too high (userGuess greater than randomNumber), it shows "Too high! Try again."</li>
+                <li>If you type something that's not a number, it says "Please enter a valid number."</li>
+               </ul>
+               <br />
+               <h3>Add Event Listener to the Submit Button</h3>
+               <ul>
+                <li>It makes sure that every time you click the submit-button, the checkGuess function runs.</li>
+               </ul>
+               <br />
+               <h3>
+               Start a New Game When the Page Loads
+               </h3>
+               <ul><li>When the page loads, the <b>newGame</b> function runs to set everything up and start the game.
+              </li></ul>
+              <br />
             </section>
 
-            <section id="InteractiveCodeEditor" className="lesson-section">
-              <h2>Interactive Code Editor</h2>
+            <section id="CodingStation" className="lesson-section">
+            <h2 style={{ color: 'var(--highlight-color2)', textAlign: 'center' }}>Let's get into Vortex - Play Around</h2>
               <p>Let's experiment with the code using the editor below. Try making changes to see how it affects the game!</p>
               <Mini_IDE defaultHTML={defaultHTML} defaultCSS={defaultCSS} defaultJS={defaultJS}/>
             </section>
@@ -296,12 +345,17 @@ result will show the final message when you guess the correct number.</p>
             <section id="Quiz" className="lesson-section">
               <h2>Quiz</h2>
               <p>Test your understanding of JavaScript functions with this quiz.</p>
-              <Quiz question={question} correctAnswer={correctAnswer} badgeSrc={badge5} quizCompleted={quizCompleted} onCorrect={() => handleQuizCompletion(true)} />
+              <Quiz question={question} correctAnswer={correctAnswer} badgeSrc={badge9} quizCompleted={quizCompleted} onCorrect={() => handleQuizCompletion(true)} />
             </section>
           </div>
         </div>
 
-        <LessonNavigator currentLesson={currentLesson} totalLessons={totalLessons} onNextLesson={handleNextLesson} onPreviousLesson={handlePreviousLesson} />
+                <LessonNavigator
+          currentLesson={currentLesson}
+          totalLessons={totalLessons}
+          onNextLesson={handleNextLesson}
+          onPreviousLesson={handlePreviousLesson}
+                 />
       </div>
     </div>
   );

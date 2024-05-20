@@ -26,8 +26,8 @@ const lessons = [
 
 function Lesson8() {
   const [currentLesson, setCurrentLesson] = useState(8);
-  const totalLessons = 9; // Assuming there are 9 lessons total
-  const [progress, setProgress] = useState(88); // Progress in percentage
+  const totalLessons = 9; 
+  const [progress, setProgress] = useState(88); 
   const [badges, setBadges] = useState<string[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
   const [lessonsCompleted, setLessonsCompleted] = useState<number>(0);
@@ -59,7 +59,7 @@ function Lesson8() {
         setLessonsCompleted(userData.lessonsCompleted);
         setBadges(userData.badges || []);
         setPoints(userData.points || 0);
-        setQuizCompleted(userData.lessonQuizzes?.lesson8 || false); // Load quiz completion state for lesson 8
+        setQuizCompleted(userData.lessonQuizzes?.lesson8 || false); 
         setProgress(((userData.lessonsCompleted || 0) / totalLessons) * 100);
       } else {
         console.log("No user data available");
@@ -82,7 +82,7 @@ function Lesson8() {
           lessonsCompleted: increment(1),
           badges: arrayUnion(newBadge),
           points: increment(100),
-          [`lessonQuizzes.lesson8`]: true, // Mark the lesson8 quiz as completed
+          [`lessonQuizzes.lesson8`]: true, 
         });
         setLessonsCompleted((prev) => {
           const newCount = prev + 1;

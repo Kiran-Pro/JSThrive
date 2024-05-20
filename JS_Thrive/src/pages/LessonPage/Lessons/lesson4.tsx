@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import LessonNavigator from '../../../components/LessonNavigator';
 import './Lessons.css';
 import icon from '../../../resources/objects.png';
-import JsEditor3 from '../../../components/codeEditor/JsEditor2';
+import JsEditor3 from '../../../components/codeEditor/JsEditor';
 import Quiz from '../../../components/Quiz/Quiz';
 import { firestore, app } from '../../../firebase.config';
 import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
@@ -25,8 +25,8 @@ const lessons = [
 
 function Lesson4() {
   const [currentLesson, setCurrentLesson] = useState(4);
-  const totalLessons = 9; // Assuming there are 9 lessons total
-  const [progress, setProgress] = useState(44); // Progress in percentage
+  const totalLessons = 9; 
+  const [progress, setProgress] = useState(44); 
   const [badges, setBadges] = useState<string[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
   const [lessonsCompleted, setLessonsCompleted] = useState<number>(0);
@@ -58,7 +58,7 @@ function Lesson4() {
         setLessonsCompleted(userData.lessonsCompleted);
         setBadges(userData.badges || []);
         setPoints(userData.points || 0);
-        setQuizCompleted(userData.lessonQuizzes?.lesson4 || false); // Load quiz completion state for lesson 4
+        setQuizCompleted(userData.lessonQuizzes?.lesson4 || false); 
         setProgress(((userData.lessonsCompleted || 0) / totalLessons) * 100);
       } else {
         console.log("No user data available");
@@ -81,7 +81,7 @@ function Lesson4() {
           lessonsCompleted: increment(1),
           badges: arrayUnion(newBadge),
           points: increment(100),
-          [`lessonQuizzes.lesson4`]: true, // Mark the lesson4 quiz as completed
+          [`lessonQuizzes.lesson4`]: true, 
         });
         setLessonsCompleted((prev) => {
           const newCount = prev + 1;
