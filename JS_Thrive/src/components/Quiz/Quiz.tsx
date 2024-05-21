@@ -81,7 +81,10 @@ const Quiz: React.FC<QuizQuestion> = ({ question, correctAnswer, badgeSrc, onCor
               <p className="badge-text">Correct answer!</p>
               <h3 className="badge-earn">You've earned a badge!</h3>
               <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'20px'}}>
-              <img src={badgeSrc} className="badge-image" alt="Congratulations Badge" />
+              <img onClick={() => {
+                    window.location.href = '/profile';
+                }} src={badgeSrc} className="badge-image" alt="Congratulations Badge" />
+
               <button onClick={handleDummyReset} className="dummy-reset-button">Take the Quiz Again</button>
               </div>
             </>

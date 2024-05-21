@@ -131,8 +131,8 @@ span {
 }
 
 .badge-image {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   border: 3px solid var(--highlight-color);
   transition: transform 0.3s, box-shadow 0.3s;
@@ -141,6 +141,7 @@ span {
 .badge-image:hover {
   transform: scale(1.2);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-color: #ffcc00;
 }
 
 .error-container {
@@ -222,3 +223,27 @@ span {
     height: 40px;
   }
 }
+
+/* ProfilePage.css */
+.profile-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.congratulations-container {
+  background-color: var(--highlight-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.congratulations-container h1 {
+  font-size: 2rem;
+  color: white;
+}
+
+.congratulations-container p {
+  font-size: 1.2rem;
+  color: white;
+}
+

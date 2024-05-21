@@ -1,19 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './LessonPage.css';
+
 interface LessonPageProps {
   title: string;
   linkTo: string;
+  style: React.CSSProperties;
+  completed: boolean;
 }
 
-const LessonPage: React.FC<LessonPageProps> = ({ title, linkTo }) => {
+const LessonPage: React.FC<LessonPageProps> = ({ title, linkTo, style, completed }) => {
+  const className = completed ? 'lesson-page completed' : 'lesson-page incomplete';
+  
   return (
-    <div className="lesson_card">
-      <h5 className="lesson-title">{title}</h5>
-      <Link to={linkTo} className="button">
-        Start Lesson
-      </Link>
-    </div>
+    <Link to={linkTo} className={className} style={style}>
+      {title}
+    </Link>
   );
 };
 

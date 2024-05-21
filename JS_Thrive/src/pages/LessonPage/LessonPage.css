@@ -1,78 +1,162 @@
-/* .lesson-content-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center; 
-  justify-items: center;
-  padding: 50px;
+
+.lesson-content-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('../../resources/map.png') no-repeat center center;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-size: cover;
+}
+
+:root {
+  --circle-size: 130px;
+  --gradient-start: #3498db;
+  --gradient-end: #2ecc71;
+  --hover-gradient-start: #2980b9;
+  --hover-gradient-end: #27ae60;
+  --incomplete-color: #bdc3c7; 
+  --incomplete-hover-color: #95a5a6;
 }
 
 
-.lesson-container:hover {
-  transform: translateY(-5px);
+
+.lesson-page {
+  position: absolute;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: var(--circle-size);
+  text-decoration: none;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
-.lesson-title {
-  color: var(--primary-color);
-  font-size: 1.2rem;
+.lesson-page.completed {
+  background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+  box-shadow: 0 0 30px var(--gradient-start), 0 0 40px var(--gradient-end);
+  animation: pulse 2s infinite;
 }
 
-.button {
-  padding: 8px 16px;
-}
- */
-
- .lesson-content-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three columns */
-  grid-gap: 30px; /* Adds space between columns */
-  align-items: start; /* Aligns items at the start of each cell */
-  justify-items: center; /* Centers items horizontally */
-  padding: 50px; /* Padding around the grid */
+.lesson-page.completed:hover,
+.lesson-page.completed:focus {
+  transform: scale(1.2);
+  background: linear-gradient(45deg, var(--hover-gradient-start), var(--hover-gradient-end));
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 40px var(--hover-gradient-start), 0 0 50px var(--hover-gradient-end);
+  outline: none;
 }
 
-@media (max-width: 700px) {
-  .lesson-content-container {
-    grid-template-columns: repeat(2, 1fr); /* Two columns for tablets */
-    padding: 20px;
+.lesson-page.incomplete {
+  background: var(--incomplete-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.lesson-page.incomplete:hover,
+.lesson-page.incomplete:focus {
+  transform: scale(1.2);
+  background: var(--incomplete-hover-color);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6), 0 0 30px var(--gradient-start), 0 0 40px var(--gradient-end);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 40px var(--hover-gradient-start), 0 0 50px var(--hover-gradient-end);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6), 0 0 30px var(--gradient-start), 0 0 40px var(--gradient-end);
   }
 }
 
-@media (max-width: 650px) {
-  .lesson-content-container {
-    grid-template-columns: 1fr; /* Single column for mobiles */
-    padding: 10px;
+@media (max-width: 600px) {
+  .lesson-page {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
   }
 }
 
-.lesson_card {
-  width: 300px; /* Fixed width for each lesson card */
-  height: 200px; /* Fixed height for each lesson card */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds shadow for 3D effect */
-  transition: transform 0.3s ease-in-out; /* Smooth transformation on hover */
+.lesson-content-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  height: 100vh;
+  background: url('../../resources/map.png') no-repeat center center;
+  background-size: cover;
+}
+
+.lesson-map {
+  position: relative;
+  flex: 3;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.lesson-content-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  background: url('../../resources/map.png') no-repeat center center;
+  background-size: cover;
+}
+
+.lesson-map {
+  position: relative;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.lesson-legend {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  width: 150px;
+  position: relative;
+  top: 340px;
+  height: 380px;
+}
+
+.lesson-legend h2 {
+  margin-top: 0;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+}
+
+.lesson-legend ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lesson-legend li {
+  display: flex;
   align-items: center;
-  padding: 20px; /* Inner spacing */
-  border-radius: 8px; /* Rounded corners */
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-.lesson_card:hover {
-  transform: translateY(-5px); /* Moves card up slightly on hover */
+.lesson-legend li.completed {
+  color: #2ecc71;
 }
 
-.lesson-title {
-  color: var(--primary-color);
-  font-size: 1.2rem;
-  margin-bottom: 10px; /* Space between title and button */
+.lesson-legend li.incomplete {
+  color: #e74c3c;
 }
 
-.button {
-  padding: 8px 16px;
+.lesson-legend li svg {
+  margin-right: 5px;
 }
-
-.button:hover {
-  background-color: darken(var(--primary-color), 10%); /* Darkens button on hover */
-}
-
-

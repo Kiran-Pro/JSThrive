@@ -90,19 +90,16 @@ h1 {
 const defaultJS=`
 
 // Get references to HTML elements
-
 const message = document.getElementById('message');
 const guessInput = document.getElementById('guess-input');
 const submitButton = document.getElementById('submit-button');
 const result = document.getElementById('result');
 
 // Initialize game variables
-
 let randomNumber = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;
 
 // Function to start a new game
-
 function newGame() {
   randomNumber = Math.floor(Math.random() * 100) + 1;
   attempts = 0;
@@ -114,13 +111,13 @@ function newGame() {
 }
 
 // Function to check the guess
-
 function checkGuess() {
   const userGuess = parseInt(guessInput.value);
   attempts++;
   if (userGuess === randomNumber) {
     result.innerText =
       'Congratulations! You guessed the number in ' + attempts + ' attempts.';
+    message.innerText = ''; // Clear previous response
     guessInput.disabled = true;
     submitButton.disabled = true;
   } else if (userGuess < randomNumber) {
@@ -133,12 +130,11 @@ function checkGuess() {
 }
 
 // Add event listener to the submit button
-
 submitButton.addEventListener('click', checkGuess);
 
 // Start a new game when the page loads
-
 newGame();
+
 `
 
 
