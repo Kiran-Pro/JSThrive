@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import './Certificate.css';
+import stamp from '../../assets/stamp.png'
+import sign from '../../assets/signature.png'
 
 interface User {
   displayName: string | null;
@@ -39,6 +41,8 @@ const Certificate: React.FC<CertificateProps> = ({ user }) => {
           <p>For successfully completing the</p>
           <h3>JSThrive: JavaScript Basics Learning</h3>
           <p>Date: {new Date().toLocaleDateString()}</p>
+          <img width={150} style={{position:'relative',left:'480px'}} src={sign} alt="" />
+          <img width={200} style={{marginTop:'-6rem',marginLeft:'19rem'}} src={stamp} alt="" />
         </div>
       </div>
       <button onClick={generatePDF}>Download Certificate</button>
