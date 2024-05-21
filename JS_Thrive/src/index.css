@@ -3,27 +3,27 @@
   --navbar-bg-color: #1a1a1a; 
   --body-bg-color: #111111; 
   --text-color: #ffffff; 
-  --card-bg-color: #1c1c1c; /* Card background color */
-  --highlight-color: #8a35e5; /* Highlight color */
+  --card-bg-color: #1c1c1c; 
+  --highlight-color: #8a35e5; 
   --highlight-color2: #006DAA;
-  --border-color: #333333; /* Border color */
+  --border-color: #333333; 
 }
 .light-theme{
-  --bg-color: #FAFAFA; /* Soft white background for a cleaner look */
-  --navbar-bg-color: #F0F0F0; /* Pure white for navbar to stand out */
-  --body-bg-color: #FAFAFA; /* Matching body background for cohesion */
-  --text-color: black; /* Dark grey for text, providing contrast without harshness */
-  --card-bg-color: #FFFFFF; /* Cards stand out with a pure white against the softer body background */
-  --highlight-color: #8a35e5; /* A calm, elegant blue for highlights and links */
+  --bg-color: #FAFAFA; 
+  --navbar-bg-color: #F0F0F0; 
+  --body-bg-color: #FAFAFA; 
+  --text-color: black; 
+  --card-bg-color: #FFFFFF; 
+  --highlight-color: #8a35e5; 
   --highlight-color2: #006DAA;
-  --border-color: #E0E0E0; /* Light grey borders for subtle separation */
+  --border-color: #E0E0E0; 
 }
 
 
 body {
   background-color: var(--body-bg-color);
   color: var(--text-color);
-  font-family: 'Poppins', Arial, sans-serif; /* New font choice */
+  font-family: 'Poppins', Arial, sans-serif; 
   margin: 0;
   padding: 0;
   line-height: 1.6;
@@ -43,7 +43,7 @@ body {
   background-color: var(--card-bg-color);
   padding: 40px;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Even darker shadow */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); 
   margin-bottom: 20px;
   width: 80%;
   max-width: 600px;
@@ -68,26 +68,25 @@ body {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 1); /* Deepest shadow on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 1); 
 }
 
 .button {
-  background-color: var(--highlight-color); /* Highlight color for buttons */
+  background-color: var(--highlight-color); 
   color: black;
-  border: 2px solid var(--highlight-color); /* Add border */
+  border: 2px solid var(--highlight-color); 
   padding: 12px 24px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease; /* Include color transition */
+  transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease; 
   font-size: 1rem;
   font-weight: 500;
   margin: 10px;
 }
 
 .button:disabled{
-  background-color: gray; /* Highlight color for buttons */
-  color: black;
-  border: 2px solid gray; /* Add border */
+  background-color: gray;  color: black;
+  border: 2px solid gray; 
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
@@ -119,14 +118,14 @@ transform: none;
   gap: 20px;
 }
 
-/* Additional styling for links */
+
 a {
   text-decoration: none;
   color: var(--highlight-color);
 }
 
 
-/* Focus on input and textarea */
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
@@ -135,9 +134,9 @@ textarea:focus {
   outline: none;
 }
 
-/* Typography enhancements */
-h1, h2, h3, h4, h5, h6, ul {
+
+h2, h3, h4, h5, h6, ul {
   color: var(--text-color);
-  font-family: 'Poppins', Arial, sans-serif; /* New font choice */
+  font-family: 'Poppins', Arial, sans-serif; 
   margin: 10px 0;
 }

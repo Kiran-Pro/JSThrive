@@ -143,6 +143,7 @@ function Lesson1() {
               your ideas to life and make the Internet a more magical place!
               <br />
             </section>
+            <br />
             <div id="Figure" className='figure'>
               <img src={Icon} width='450px' alt="Icon" />
               <h2 className='lesson-title'>Basically, JS is like Human Brain that Controls the Whole Body (HTML)</h2>
@@ -156,6 +157,7 @@ function Lesson1() {
               And guess what? An alert pops up to visualize the code that you typed at your coding station! So, go ahead,
               click <strong>Run it</strong> and witness!
             </section>
+<br />
             <div className='editor-container'>
               <JsEditor3 defaultCode={defaultCode} onExecute={(code) => {
                 try {
@@ -165,6 +167,7 @@ function Lesson1() {
                 }
               }} />
             </div>
+            <br />
             <section>
               The Friendly Wizard is going to introduce fundamental programming concepts such as variables,
               data types, conditionals, loops, functions, and objects.
@@ -172,7 +175,9 @@ function Lesson1() {
             <br />
             <Quiz question={question} correctAnswer={correctAnswer} badgeSrc={badge} onCorrect={() => handleQuizCompletion(true)} quizCompleted={quizCompleted} />
           </div>
+          <br />
           <h1>Ready to Thrive?</h1>
+          <br />
           <LessonNavigator
             currentLesson={currentLesson}
             totalLessons={totalLessons}

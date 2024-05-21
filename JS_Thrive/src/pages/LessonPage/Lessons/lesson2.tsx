@@ -157,11 +157,12 @@ function Lesson2() {
               <br />
 
               <h2>Seconds in an Hour</h2>
+              <br />
               <p>First we create two new variables called secondsInAMinute and minutesInAnHour and make them both 60 (because, as we know, there are 60 seconds in a minute and 60 minutes in an hour). 
                 Then we create a variable called secondsInAnHour and set its value to the result of multiplying secondsInAMinute and minutesInAnHour. After, we enter secondsInAnHour,
                 which is like saying, “Tell me the value of secondsInAnHour right now!” JavaScript then gives you the answer: it’s 3600.
               </p>
-
+              <br />
               <JsEditor defaultCode={defaultCode2} onExecute={(code) => {
                 try {
                   eval(code);
@@ -171,7 +172,7 @@ function Lesson2() {
               }} />
             </section>
             <br />
-
+            <br />
         
             <section id="DataTypes" className="lesson-section">
               <h2>Explore Data Types</h2>
@@ -184,8 +185,8 @@ function Lesson2() {
                 <li><strong>Null:</strong> Sometimes you might want to say that something doesn't exist. That's null. It's like having an empty box on purpose.</li>
               </ul>
             </section>
-
-            
+            <br />
+            <br />
             <section id="CodingStation" className="lesson-section">
               <h2>Time for Fun Coding!</h2>
               <p>Ready to try it yourself? Let's use the magic vortex - code editor below to create your own variables and make cool things happen!</p>
@@ -205,6 +206,7 @@ function Lesson2() {
 
               <Quiz question={question} correctAnswer={correctAnswer} badgeSrc={badge2} quizCompleted={quizCompleted} onCorrect={() => handleQuizCompletion(true)} />
             </section>
+            <br />
           </div>
         </div>
 
