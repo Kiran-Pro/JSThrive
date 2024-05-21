@@ -15,7 +15,7 @@ const LessonContentPage: React.FC = () => {
       <LessonPage title="Loops" linkTo="/lesson6" />
       <LessonPage title="Functions" linkTo="/lesson7" />
       <LessonPage title="PseudoCode" linkTo="/lesson8" />
-    <LessonPage title="Let' create a Game" linkTo="/lesson9" />
+    <LessonPage title="Let'Create a Game" linkTo="/lesson9" />
     
     </div>
   );
