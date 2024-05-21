@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 interface ThemeContextType {
@@ -21,14 +20,18 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [lightMode, setLightMode] = useState(false);
+  const [lightMode, setLightMode] = useState(() => {
+    const savedTheme = localStorage.getItem('lightMode');
+    return savedTheme ? JSON.parse(savedTheme) : false;
+  });
 
   useEffect(() => {
     document.documentElement.className = lightMode ? 'light-theme' : '';
+    localStorage.setItem('lightMode', JSON.stringify(lightMode));
   }, [lightMode]);
 
   const toggleTheme = () => {
-    setLightMode(!lightMode);
+    setLightMode((prevMode: unknown) => !prevMode);
   };
 
   return (

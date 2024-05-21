@@ -5,6 +5,7 @@ import { ThemeProvider } from './Context/ThemeContext';
 import Loader from './components/Loader/Loader';
 import Navbar from './components/Navbar/Navbar';
 
+
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage/ProfilePage'));
 const Register = lazy(() => import('./pages/UserAuthentication/Register'));
@@ -23,6 +24,14 @@ const Lesson6 = lazy(() => import('./pages/LessonPage/Lessons/Lesson6'));
 const Lesson7 = lazy(() => import('./pages/LessonPage/Lessons/Lesson7'));
 const Lesson8 = lazy(() => import('./pages/LessonPage/Lessons/Lesson8'));
 const Lesson9 = lazy(() => import('./pages/LessonPage/Lessons/Lesson9'));
+
+
+const GamePage = lazy(() => import('./pages/GamePage/GamePage'));
+const Game2 = lazy(() => import('./pages/GamePage/Games/TicTacToe/TicTacToe'));
+const Game3 = lazy(() => import('./pages/GamePage/Games/RockPaper/RockPaper'));
+const Game4 = lazy(() => import('./pages/GamePage/Games/NumberGuessing/NumberGuessing'));
+const Game5 = lazy(() => import('./pages/GamePage/Games/Snake/Snake'));
+
 
 const AppRoutes = () => {
   return (
@@ -45,6 +54,11 @@ const AppRoutes = () => {
               <Route path="/lesson9" element={<Lesson9 />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/certificate" element={<CertificatePage/>}/>
+              <Route path="/gamepage" element={<GamePage/>}/>
+              <Route path="/game2" element={<Game2/>}/>
+              <Route path="/game3" element={<Game3/>}/>
+              <Route path="/game4" element={<Game4/>}/>
+              <Route path="/game5" element={<Game5/>}/>
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgetPass" element={<ForgetPassword />} />

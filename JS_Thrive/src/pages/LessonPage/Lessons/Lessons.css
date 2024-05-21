@@ -100,21 +100,20 @@ b{
 
 @media (max-width: 750px) {
   .lesson-nav {
-    display: none; /* Hide the lesson navigator for devices <= 400px width */
+    display: none; 
   }
 
   .lesson-container {
-    padding: 20px; /* Reduce padding for small screens */
-    max-width: 100%; /* Use full width to better utilize space */
+    padding: 20px; 
+    max-width: 100%; 
   }
 
   .lesson-title, .lesson-section h3 {
-    font-size: 18px; /* Reduce font size for headers */
+    font-size: 18px; 
   }
 
   .lesson-section p, .quiz-container, .input, .label, .submit-button, .badge-text {
-    font-size: 14px; /* Reduce font size for text elements */
-  }
+    font-size: 14px; }
 
   .figure {
     flex-direction: column; /* Stack image and text vertically */
