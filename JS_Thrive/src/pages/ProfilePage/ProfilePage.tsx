@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate,useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
 import { getFirestore, doc, onSnapshot } from 'firebase/firestore';
 import { app } from '../../firebase.config';
@@ -47,6 +47,7 @@ const ProfilePage: React.FC = () => {
   const [lessonsCompleted, setLessonsCompleted] = useState<number>(0);
   const [points, setPoints] = useState(0);
   const [userBadges, setUserBadges] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const auth = getAuth(app);
@@ -132,16 +133,25 @@ const ProfilePage: React.FC = () => {
           <h1>Congratulations! 🎉</h1>
           <p>You've completed all the lessons!</p>
           <h2>Keep Thriving!</h2>
+          <button style={{borderColor:'black'}} className='button'
+            onClick={() =>
+              navigate('/certificate', {
+                state: { user: { displayName: user?.displayName, email: user?.email } },
+              })
+            }
+          >
+            View Certificate
+          </button>
         </div>
       ) : null}
 
       <div className="info-points-container">
         <div className="user-info-box">
           <h3 className="user-name">
-            <span>Name:</span> {user.displayName || 'Name not provided'}
+            <span>Name:</span> {user?.displayName || 'Name not provided'}
           </h3>
           <h3 className="user-email">
-            <span>E-mail:</span> {user.email || 'Email not provided'}
+            <span>E-mail:</span> {user?.email || 'Email not provided'}
           </h3>
         </div>
         <div className="profile-points-container">

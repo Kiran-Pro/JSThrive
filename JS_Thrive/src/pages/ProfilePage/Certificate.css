@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap');
+
+
+
+.certificate {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+  border: 10px solid #444;
+  margin: 20px auto;
+  background: #fff url('https://source.unsplash.com/random/800x600?texture') no-repeat center center;
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  max-width: 800px;
+  position: relative;
+}
+
+.certificate-content {
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+.certificate h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.certificate h2 {
+  font-size: 2.5rem;
+  margin: 20px 0;
+  color: #555;
+}
+
+.certificate h3 {
+  font-size: 1.8rem;
+  margin: 20px 0;
+  color: #666;
+}
+
+.certificate p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #777;
+}
+
+button {
+  display: block;
+  margin: 30px auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}

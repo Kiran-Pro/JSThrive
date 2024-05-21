@@ -12,7 +12,7 @@
   --bg-color: #FAFAFA; /* Soft white background for a cleaner look */
   --navbar-bg-color: #F0F0F0; /* Pure white for navbar to stand out */
   --body-bg-color: #FAFAFA; /* Matching body background for cohesion */
-  --text-color: #323232; /* Dark grey for text, providing contrast without harshness */
+  --text-color: black; /* Dark grey for text, providing contrast without harshness */
   --card-bg-color: #FFFFFF; /* Cards stand out with a pure white against the softer body background */
   --highlight-color: #8a35e5; /* A calm, elegant blue for highlights and links */
   --highlight-color2: #006DAA;

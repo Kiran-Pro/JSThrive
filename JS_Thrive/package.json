@@ -14,20 +14,18 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
-    "@react-three/drei": "^9.105.6",
-    "@react-three/fiber": "^8.16.6",
     "ace-builds": "^1.33.1",
     "cors": "^2.8.5",
     "firebase": "^10.9.0",
     "react": "^18.2.0",
     "react-ace": "^11.0.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3",
-    "three": "^0.164.1",
-    "three-stdlib": "^2.30.0"
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
     "@types/firebase": "^3.2.1",
+    "@types/html2canvas": "^1.0.0",
+    "@types/jspdf": "^2.0.0",
     "@types/prismjs": "^1.26.4",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

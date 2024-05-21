@@ -12,6 +12,7 @@ const Login = lazy(() => import('./pages/UserAuthentication/Login'));
 const ForgetPassword = lazy(() => import('./pages/UserAuthentication/ForgetPassword'));
 const NotFoundPage = lazy(() => import('./pages/ErrorPage/NotFoundPage'));
 const LessonContainer = lazy(() => import('./pages/LessonPage/LessonContainer'));
+const CertificatePage = lazy(() => import('./pages/ProfilePage/CertificatePage'));
 
 const Lesson1 = lazy(() => import('./pages/LessonPage/Lessons/Lesson1'));
 const Lesson2 = lazy(() => import('./pages/LessonPage/Lessons/Lesson2'));
@@ -43,6 +44,7 @@ const AppRoutes = () => {
               <Route path="/lesson8" element={<Lesson8 />} />
               <Route path="/lesson9" element={<Lesson9 />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/certificate" element={<CertificatePage/>}/>
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgetPass" element={<ForgetPassword />} />
