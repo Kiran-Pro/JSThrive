@@ -7,8 +7,8 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import styles from './UserAuthentication.module.css';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('test1@gmail.com');
+  const [password, setPassword] = useState('test@1234');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
