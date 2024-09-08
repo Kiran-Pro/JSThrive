@@ -79,7 +79,7 @@ const Quiz: React.FC<QuizQuestion> = ({ question, correctAnswer, badgeSrc, onCor
             <>
               <h3 className="badge-title">Congratulations!</h3>
               <p className="badge-text">Correct answer!</p>
-              <h3 className="badge-earn">You've earned a badge!</h3>
+              <h3 className="badge-earn">You've earned a badge</h3>
               <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'20px'}}>
               <img onClick={() => {
                     window.location.href = '/profile';
