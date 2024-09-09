@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import LessonPage from './LessonPage';
-import './LessonPage.css';
-import { firestore, app } from '../../firebase.config';
-import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import React, { useState, useEffect } from "react";
+import LessonPage from "./LessonPage";
+import "./LessonPage.css";
+import { firestore, app } from "../../firebase.config";
+import { User, getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 const LessonContentPage: React.FC = () => {
   const lessons = [
@@ -20,19 +21,21 @@ const LessonContentPage: React.FC = () => {
   ];
 
   const lessonPositions = [
-    { top: '30%', left: '28%' },
-    { top: '2%', left: '47%' },
-    { top: '30%', left: '47%' },
-    { top: '3%', left: '67%' },
-    { top: '30%', left: '80%' },
-    { top: '70%', left: '80%' },
-    { top: '60%', left: '47%' },
-    { top: '60%', left: '18%' },
-    { top: '10%', left: '10%' },
+    { top: "30%", left: "28%" },
+    { top: "2%", left: "47%" },
+    { top: "30%", left: "47%" },
+    { top: "3%", left: "67%" },
+    { top: "30%", left: "80%" },
+    { top: "70%", left: "80%" },
+    { top: "60%", left: "47%" },
+    { top: "60%", left: "18%" },
+    { top: "10%", left: "10%" },
   ];
 
-  const [completedLessons, setCompletedLessons] = useState<boolean[]>(new Array(lessons.length).fill(false));
-  const [user, setUser] = useState<User | null>(null);
+  const [completedLessons, setCompletedLessons] = useState<boolean[]>(
+    new Array(lessons.length).fill(false)
+  );
+  const [, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const auth = getAuth(app);
@@ -43,7 +46,9 @@ const LessonContentPage: React.FC = () => {
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          const lessonCompletion = lessons.map((_, index) => userData.lessonQuizzes[`lesson${index + 1}`] || false);
+          const lessonCompletion = lessons.map(
+            (_, index) => userData.lessonQuizzes[`lesson${index + 1}`] || false
+          );
           setCompletedLessons(lessonCompletion);
         }
       }
@@ -68,7 +73,10 @@ const LessonContentPage: React.FC = () => {
         <h2>Lesson Order</h2>
         <ul>
           {lessons.map((lesson, index) => (
-            <li key={index} className={completedLessons[index] ? 'completed' : 'incomplete'}>
+            <li
+              key={index}
+              className={completedLessons[index] ? "completed" : "incomplete"}
+            >
               {lesson.title}
             </li>
           ))}

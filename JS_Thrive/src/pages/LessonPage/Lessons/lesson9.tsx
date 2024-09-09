@@ -1,21 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, useEffect } from 'react';
-import LessonNavigator from '../../../components/LessonNavigator';
-import './Lessons.css';
-import Quiz from '../../../components/Quiz/Quiz';
-import { firestore, app } from '../../../firebase.config';
-import { doc, updateDoc, arrayUnion, onSnapshot, increment } from 'firebase/firestore';
-import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
-import badge9 from '../../../resources/lion_badge.png';
-import LessonDirector from './LessonDirector';
-import Mini_IDE from '../../../components/codeEditor/Mini_codeEditor/Mini_IDE';
-import Mini_IDE_Simple from '../../../components/codeEditor/Mini_IDE_Simple';
-import JsEditor2 from '../../../components/codeEditor/JsEditor';
+import { useState, useEffect } from "react";
+import LessonNavigator from "../../../components/LessonNavigator";
+import "./Lessons.css";
+import Quiz from "../../../components/Quiz/Quiz";
+import { firestore, app } from "../../../firebase.config";
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  onSnapshot,
+  increment,
+} from "firebase/firestore";
+import { User, getAuth, onAuthStateChanged } from "firebase/auth";
+import badge9 from "../../../resources/lion_badge.png";
+import LessonDirector from "./LessonDirector";
+import Mini_IDE from "../../../components/codeEditor/Mini_codeEditor/Mini_IDE";
+import Mini_IDE_Simple from "../../../components/codeEditor/Mini_IDE_Simple";
+import JsEditor2 from "../../../components/codeEditor/JsEditor";
 
-const question = 'What is the purpose of the parseInt function in JavaScript?';
-const correctAnswer = 'Converts a string into an integer';
+const question = "What is the purpose of the parseInt function in JavaScript?";
+const correctAnswer = "Converts a string into an integer";
 
-const defaultHTML=`<!DOCTYPE html>
+const defaultHTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,8 +42,8 @@ const defaultHTML=`<!DOCTYPE html>
     <script src="script.js"></script>
 </body>
 </html>
-`
-const defaultCSS=`body {
+`;
+const defaultCSS = `body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   color: #333;
@@ -86,8 +92,8 @@ h1 {
 #submit-button:hover {
   background-color: #287a6e;
 }
-`
-const defaultJS=`
+`;
+const defaultJS = `
 
 // Get references to HTML elements
 const message = document.getElementById('message');
@@ -135,28 +141,26 @@ submitButton.addEventListener('click', checkGuess);
 // Start a new game when the page loads
 newGame();
 
-`
-
+`;
 
 const lessons = [
-  { label: 'Introduction', href: '#Introduction' },
-  { label: 'HTML Structure', href: '#HTMLStructure' },
-  { label: 'CSS Styling', href: '#CSSStyling' },
-  { label: 'JavaScript Functionality', href: '#JavaScriptFunctionality' },
-  { label: 'CodingStation', href: '#CodingStation' },
-  { label: 'Quiz', href: '#Quiz' },
+  { label: "Introduction", href: "#Introduction" },
+  { label: "HTML Structure", href: "#HTMLStructure" },
+  { label: "CSS Styling", href: "#CSSStyling" },
+  { label: "JavaScript Functionality", href: "#JavaScriptFunctionality" },
+  { label: "CodingStation", href: "#CodingStation" },
+  { label: "Quiz", href: "#Quiz" },
 ];
 
 function Lesson9() {
   const [currentLesson, setCurrentLesson] = useState(9);
   const totalLessons = 9;
   const [progress, setProgress] = useState(0);
-  const [badges, setBadges] = useState<string[]>([]);
-  const [isCompleted, setIsCompleted] = useState(false);
-  const [lessonsCompleted, setLessonsCompleted] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>('');
-  const [points, setPoints] = useState(0);
+  const [, setBadges] = useState<string[]>([]);
+  const [, setLessonsCompleted] = useState<number>(0);
+  const [, setLoading] = useState<boolean>(true);
+  const [, setError] = useState<string>("");
+  const [, setPoints] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
 
@@ -175,23 +179,27 @@ function Lesson9() {
 
   const subscribeToUserData = (userId: string) => {
     const userDocRef = doc(firestore, "users", userId);
-    return onSnapshot(userDocRef, (doc) => {
-      if (doc.exists()) {
-        const userData = doc.data();
-        setLessonsCompleted(userData.lessonsCompleted);
-        setBadges(userData.badges || []);
-        setPoints(userData.points || 0);
-        setQuizCompleted(userData.lessonQuizzes?.lesson9 || false); 
-        setProgress(((userData.lessonsCompleted || 0) / totalLessons) * 100);
-      } else {
-        console.log("No user data available");
+    return onSnapshot(
+      userDocRef,
+      (doc) => {
+        if (doc.exists()) {
+          const userData = doc.data();
+          setLessonsCompleted(userData.lessonsCompleted);
+          setBadges(userData.badges || []);
+          setPoints(userData.points || 0);
+          setQuizCompleted(userData.lessonQuizzes?.lesson9 || false);
+          setProgress(((userData.lessonsCompleted || 0) / totalLessons) * 100);
+        } else {
+          console.log("No user data available");
+        }
+        setLoading(false);
+      },
+      (error) => {
+        console.error("Error fetching user data:", error);
+        setError("Failed to load user data");
+        setLoading(false);
       }
-      setLoading(false);
-    }, (error) => {
-      console.error("Error fetching user data:", error);
-      setError("Failed to load user data");
-      setLoading(false);
-    });
+    );
   };
 
   const handleQuizCompletion = async (isCorrect: boolean) => {
@@ -204,7 +212,7 @@ function Lesson9() {
           lessonsCompleted: increment(1),
           badges: arrayUnion(newBadge),
           points: increment(100),
-          [`lessonQuizzes.lesson9`]: true, 
+          [`lessonQuizzes.lesson9`]: true,
         });
         setLessonsCompleted((prev) => {
           const newCount = prev + 1;
@@ -214,7 +222,9 @@ function Lesson9() {
         setBadges((prev) => [...prev, newBadge]);
         setPoints((prev) => prev + 100);
         setQuizCompleted(true);
-        console.log("Profile updated successfully with additional points and badge");
+        console.log(
+          "Profile updated successfully with additional points and badge"
+        );
       } catch (error) {
         console.error("Error updating user profile:", error);
       }
@@ -248,110 +258,190 @@ function Lesson9() {
             <section id="Introduction" className="lesson-section">
               <h2>Introduction</h2>
               <p>
-                In this lesson, we'll create a simple number guessing game using HTML, CSS, and JavaScript. The game will generate a random number, and you'll have to guess what it is. Let's get started!
+                In this lesson, we'll create a simple number guessing game using
+                HTML, CSS, and JavaScript. The game will generate a random
+                number, and you'll have to guess what it is. Let's get started!
               </p>
             </section>
 
             <section id="HTMLStructure" className="lesson-section">
               <h2>HTML Structure</h2>
-              <p>Here's the HTML structure for our game. It includes a title, a container for the game, and an input field for entering guesses.</p>
-              <Mini_IDE_Simple htmlCode={defaultHTML}/>
-              <p>This is the basic HTML structure for our game. It includes a title, a container for the game, and an input field for entering guesses.
-                Go and Play around, it has  <b>Live editor</b> in it!
+              <p>
+                Here's the HTML structure for our game. It includes a title, a
+                container for the game, and an input field for entering guesses.
+              </p>
+              <Mini_IDE_Simple htmlCode={defaultHTML} />
+              <p>
+                This is the basic HTML structure for our game. It includes a
+                title, a container for the game, and an input field for entering
+                guesses. Go and Play around, it has <b>Live editor</b> in it!
               </p>
             </section>
 
             <section id="CSSStyling" className="lesson-section">
               <h2>CSS Styling</h2>
-              <p>Now, let's style our game to make it look clean and user-friendly. Here's the CSS:</p>
-              <Mini_IDE_Simple htmlCode={defaultHTML} cssCode={defaultCSS}/>
-              <p>This CSS styles the game container, input field, and button to make the game look clean and user-friendly.</p>
+              <p>
+                Now, let's style our game to make it look clean and
+                user-friendly. Here's the CSS:
+              </p>
+              <Mini_IDE_Simple htmlCode={defaultHTML} cssCode={defaultCSS} />
+              <p>
+                This CSS styles the game container, input field, and button to
+                make the game look clean and user-friendly.
+              </p>
             </section>
 
             <section id="JavaScriptFunctionality" className="lesson-section">
               <h2>JavaScript Functionality</h2>
-              <p>Let's add the JavaScript functionality to our game. This code handles the game logic, including generating a random number, checking the user's guess, and providing feedback.</p>
+              <p>
+                Let's add the JavaScript functionality to our game. This code
+                handles the game logic, including generating a random number,
+                checking the user's guess, and providing feedback.
+              </p>
               <JsEditor2 defaultCode={defaultJS} />
-              <p>This JavaScript code handles the game logic, including generating a random number, checking the user's guess, and providing feedback.</p>
+              <p>
+                This JavaScript code handles the game logic, including
+                generating a random number, checking the user's guess, and
+                providing feedback.
+              </p>
               <br />
-              <h3>
-             Get References to HTML Elements
-              </h3>
+              <h3>Get References to HTML Elements</h3>
               <ul>
-                <li>We have four special "boxes" in our HTML: message, guess-input, submit-button, and result.</li>
-               <li> message will show hints like "Too low!" or "Too high!".</li>
-               <li>guess-input is where you type your guess.</li>
-               <li>submit-button is the button you click to submit your guess.</li>
-               <li> result will show the final message when you guess the correct number.</li>
-               </ul>
-               <br />
-               <h3>
-              Initialize Game Variables
-               </h3>
-               <ul>
-                <li><b>randomNumber</b> is a secret number between 1 and 100 that you need to guess.</li>
-                <li><b>attempts</b> keeps track of how many guesses you've made.</li>
-             
-               </ul>
-               <br />
-               <h3>
-               Start a New Game
-               </h3>
-               <ul>
-                <li>The <b>newGame</b> function resets everything to start a new game.</li>
+                <li>
+                  We have four special "boxes" in our HTML: message,
+                  guess-input, submit-button, and result.
+                </li>
+                <li>
+                  {" "}
+                  message will show hints like "Too low!" or "Too high!".
+                </li>
+                <li>guess-input is where you type your guess.</li>
+                <li>
+                  submit-button is the button you click to submit your guess.
+                </li>
+                <li>
+                  {" "}
+                  result will show the final message when you guess the correct
+                  number.
+                </li>
+              </ul>
+              <br />
+              <h3>Initialize Game Variables</h3>
+              <ul>
+                <li>
+                  <b>randomNumber</b> is a secret number between 1 and 100 that
+                  you need to guess.
+                </li>
+                <li>
+                  <b>attempts</b> keeps track of how many guesses you've made.
+                </li>
+              </ul>
+              <br />
+              <h3>Start a New Game</h3>
+              <ul>
+                <li>
+                  The <b>newGame</b> function resets everything to start a new
+                  game.
+                </li>
                 <li>It picks a new secret number.</li>
                 <li>It sets attempts back to 0.</li>
-                <li>It updates the message to tell you to guess a number between 1 and 100.</li>
+                <li>
+                  It updates the message to tell you to guess a number between 1
+                  and 100.
+                </li>
                 <li>It clears the result and guessInput fields.</li>
                 <li>It makes sure you can type and click the button again.</li>
-               </ul>
-               <br />
-               <h3>
-               Check the Guess
-               </h3>
-               <ul>
-                <li>The <b>checkGuess</b> function checks if your guess is right.</li>
-                <li>It gets your guess from the guessInput and turns it into a number using parseInt.</li>
+              </ul>
+              <br />
+              <h3>Check the Guess</h3>
+              <ul>
+                <li>
+                  The <b>checkGuess</b> function checks if your guess is right.
+                </li>
+                <li>
+                  It gets your guess from the guessInput and turns it into a
+                  number using parseInt.
+                </li>
                 <li>It adds 1 to attempts because you made a guess.</li>
-                <li>If your guess is correct (userGuess === randomNumber), it shows a congratulations message, and stops you from typing or clicking again by disabling the input and button.</li>
-                <li>If your guess is too low (userGuess lesser than randomNumber), it shows "Too low! Try again."</li>
-                <li>If your guess is too high (userGuess greater than randomNumber), it shows "Too high! Try again."</li>
-                <li>If you type something that's not a number, it says "Please enter a valid number."</li>
-               </ul>
-               <br />
-               <h3>Add Event Listener to the Submit Button</h3>
-               <ul>
-                <li>It makes sure that every time you click the submit-button, the checkGuess function runs.</li>
-               </ul>
-               <br />
-               <h3>
-               Start a New Game When the Page Loads
-               </h3>
-               <ul><li>When the page loads, the <b>newGame</b> function runs to set everything up and start the game.
-              </li></ul>
+                <li>
+                  If your guess is correct (userGuess === randomNumber), it
+                  shows a congratulations message, and stops you from typing or
+                  clicking again by disabling the input and button.
+                </li>
+                <li>
+                  If your guess is too low (userGuess lesser than randomNumber),
+                  it shows "Too low! Try again."
+                </li>
+                <li>
+                  If your guess is too high (userGuess greater than
+                  randomNumber), it shows "Too high! Try again."
+                </li>
+                <li>
+                  If you type something that's not a number, it says "Please
+                  enter a valid number."
+                </li>
+              </ul>
+              <br />
+              <h3>Add Event Listener to the Submit Button</h3>
+              <ul>
+                <li>
+                  It makes sure that every time you click the submit-button, the
+                  checkGuess function runs.
+                </li>
+              </ul>
+              <br />
+              <h3>Start a New Game When the Page Loads</h3>
+              <ul>
+                <li>
+                  When the page loads, the <b>newGame</b> function runs to set
+                  everything up and start the game.
+                </li>
+              </ul>
               <br />
             </section>
 
             <section id="CodingStation" className="lesson-section">
-            <h2 style={{ color: 'var(--highlight-color2)', textAlign: 'center' }}>Let's get into Vortex - Play Around</h2>
-              <p>Let's experiment with the code using the editor below. Try making changes to see how it affects the game!</p>
-              <Mini_IDE defaultHTML={defaultHTML} defaultCSS={defaultCSS} defaultJS={defaultJS}/>
+              <h2
+                style={{
+                  color: "var(--highlight-color2)",
+                  textAlign: "center",
+                }}
+              >
+                Let's get into Vortex - Play Around
+              </h2>
+              <p>
+                Let's experiment with the code using the editor below. Try
+                making changes to see how it affects the game!
+              </p>
+              <Mini_IDE
+                defaultHTML={defaultHTML}
+                defaultCSS={defaultCSS}
+                defaultJS={defaultJS}
+              />
             </section>
 
             <section id="Quiz" className="lesson-section">
               <h2>Quiz</h2>
-              <p>Test your understanding of JavaScript functions with this quiz.</p>
-              <Quiz question={question} correctAnswer={correctAnswer} badgeSrc={badge9} quizCompleted={quizCompleted} onCorrect={() => handleQuizCompletion(true)} />
+              <p>
+                Test your understanding of JavaScript functions with this quiz.
+              </p>
+              <Quiz
+                question={question}
+                correctAnswer={correctAnswer}
+                badgeSrc={badge9}
+                quizCompleted={quizCompleted}
+                onCorrect={() => handleQuizCompletion(true)}
+              />
             </section>
           </div>
         </div>
 
-                <LessonNavigator
+        <LessonNavigator
           currentLesson={currentLesson}
           totalLessons={totalLessons}
           onNextLesson={handleNextLesson}
           onPreviousLesson={handlePreviousLesson}
-                 />
+        />
       </div>
     </div>
   );
